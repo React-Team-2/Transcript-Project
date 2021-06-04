@@ -3,9 +3,9 @@ import React from 'react';
 
 const Login = () => {
     return(
-        <div>
+        // <Router>
             Login
-        </div>
+        // </Router>
     )
 }
 export default Login;
