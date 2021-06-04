@@ -18,7 +18,7 @@
 //             Auth.authenticated = false;
 //             console.log(userId)
 //         } else {
-
+                
 //             // let {auth} = store(null,this.action());
 //             Auth.authenticated = auth;
 //             console.log(Auth.authenticated)
