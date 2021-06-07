@@ -16,11 +16,11 @@ const Main = () => {
       <Router>
       <Route exact path="/dashboard" component={Analytics} />
         <Switch>
-          <Route path="/trainees" component={Trainee} />
-          <Route path="/courses" component={Course} />
-          <Route path="/tracks" component={Track} />
-          <Route path="/assessment" component={Assessment}/>
-          <Route path="/progress-report" component={ProjectReport} />
+          <Route path="/admin/trainees" component={Trainee} />
+          <Route path="/admin/courses" component={Course} />
+          <Route path="/admin/tracks" component={Track} />
+          <Route path="/admin/assessment" component={Assessment}/>
+          <Route path="/admin/progress-report" component={ProjectReport} />
         </Switch>
       </Router>
      

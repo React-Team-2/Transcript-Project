@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import "./login.css";
+import "./Login.css";
 import axios from "axios";
 import Auth from '../../Auth';
 

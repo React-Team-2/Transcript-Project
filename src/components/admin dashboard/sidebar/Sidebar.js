@@ -44,28 +44,28 @@ let history = useHistory();
         
         <div className="sidebar__link active">
           <i className="fas fa-users" aria-hidden="true"></i>
-          <a href="/trainees">Trainees</a>
+          <a href="/admin/trainees">Trainees</a>
          
         </div>
         <div className="sidebar__link">
           <i  className="fas fa-tasks"></i>
-          <a href="/courses">Courses</a>
+          <a href="/admin/courses">Courses</a>
          
         </div>
 
         <div className="sidebar__link">
           <i  className="fas fa-cog"></i>
-          <a href="/tracks">Tracks</a>
+          <a href="/admin/tracks">Tracks</a>
         </div>
 
         <div className="sidebar__link">
           <i  className="fas fa-tasks"></i>
-          <a href="/assessment">Assessment</a>
+          <a href="/admin/assessment">Assessment</a>
         </div>
 
         <div className="sidebar__link">
           <i className="fas fa-file-alt"></i>
-          <a href="/progress-report">Progress Report</a>
+          <a href="/admin/progress-report">Progress Report</a>
         </div>
        
      
