@@ -2,6 +2,7 @@ import { useState } from "react";
 import Main from "./main/Main";
 import Navbar from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
+import "./index.css"
 
 const App = () => {
   const [sidebarOpen, setsidebarOpen] = useState(false);
