@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 import '../courses/Course.css';
+import axios from "axios";
 
 class track extends Component {
     render() {
-        this.records=[
-            {id:"1",title:"Foundation",code:"PWJ",date:"2021-01-04"},
-            {id:"2",title:"Media & Design",code:"PWJ",date:"2021-01-04"},
-            {id:"3",title:"Software Development & Evolution",code:"PWJ",date:"2021-01-04"},
-            {id:"4",title:"Machine Learning & Data Analytics",code:"PWJ",date:"2021-01-04"},
-            {id:"5",title:"Salesforce Commerce Cloud Development",code:"STWC",date:"2021-03-15"},
-            
-          ]
+        async function fetchTracks(){
+            const fetchedTracks = await axios.get('https://amalitech-tms.herokuapp.com/tracks?user=60ba4ef1303e0f1b04b7a26c', {
+                headers: {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4"}
+            })
+            return fetchedTracks.data.result;
+       }
+
+       
+       fetchTracks().then(tracks =>{
+        this.props.updatetracks(tracks)
+       })
+       
+        let trackData =this.props.track;
+        //Date Created
+        trackData.map(track=>{
+            const date = new Date(track.enrollment_date);
+            track.enrollment_date = date.toLocaleDateString();
+        })
         return (
             <div class="container p-5">
             <div class="row">
@@ -39,22 +51,21 @@ class track extends Component {
                 <tr>
                   <th>#</th>
                   <th>Track Title</th>
-                  <th>Course Code</th>
+                  <th>Track Master</th>
                   <th>Date Enrolled</th>
                   <th>Action</th>
-
-                  
-                 
                 </tr>
               </thead>
               <tbody>
-                {this.records.map((track) => {
+                 
+                {trackData.map((track,index) => {
                   return (
                     <tr>
-                      <td>{track.id}</td>
-                      <td>{track.title}</td>
-                      <td>{track.code}</td>
-                      <td>{track.date}</td>
+                      <td>{index}</td>
+                      <td>{track.track_name}</td>
+                      <td>{track.track_master}</td>
+                      <td>{track.enrollment_date}</td>
+                     
                       <td><button className="btn btn-primary">View</button></td>
 
                      
@@ -67,42 +78,22 @@ class track extends Component {
          
 
 
-            // <div className="table-container">
-            //     <table>
-            //         <thead>
-            //             <tr>
-            //             <th>No</th>
-            //             <th>Track Name</th>
-            //             <th>Date Enrolled</th>
-            //             <th>Course Profile</th>
-            //             </tr>
-            //         </thead>
-            //         <tbody>
-            //             <tr>
-            //             <td>1</td>
-            //             <td>Media & Design</td>
-            //             <td>2021-05-26</td>
-            //             <td><button><a>View</a></button></td>
-            //             </tr>
-            //             <tr>
-            //             <td>2</td>
-            //             <td>Foundation</td>
-            //             <td>2021-02-16</td>
-            //             <td><button><a>View</a></button></td>
-            //             </tr>
-            //             <tr>
-            //             <td>3</td>
-            //             <td>Advanced</td>
-            //             <td>2021-07-16</td>
-            //             <td><button><a>View</a></button></td>
-            //             </tr>
-                       
-            //         </tbody>
-            //     </table>
-
-            // </div>
+          
         );
     }
 }
 
-export default track;
+const mapStateToProps = state =>{
+     return{
+         track:state.allTracks
+     }
+}
+
+
+const mapDispatchToProps = dispatch =>{
+    return{
+        updatetracks:(tracks)=>dispatch({type:"UPDATE_TRACKS", value: tracks})
+        }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps) (track);
