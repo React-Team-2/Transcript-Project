@@ -1,15 +1,19 @@
 import "./Sidebar.css";
 import{Button} from 'react-bootstrap'
+import {useHistory} from 'react-router-dom';
+import Auth from '../../../Auth'
 
 import {BrowserRouter as Link} from "react-router-dom";
 
 
 
 const Sidebar = (props, { sidebarOpen, closeSidebar }) => {
-
+let history = useHistory();
 
   const handleLogout = () => {
-    props.history.push('/Login');
+    Auth.logOut(()=>{
+      history.push('/');
+    })   
   }
   
   return (
