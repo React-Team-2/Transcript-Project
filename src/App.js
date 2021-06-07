@@ -14,7 +14,7 @@ const App = () =>{
                 <Route exact path ='/' component ={About}/>
                 <Route path='/Login' component= {Login} />
                 <Route path='/admin' component ={AdminDashboard} />
-                <ProtectedRoute path='/trainee' component ={TraineeDashboard} />
+                <Route path='/trainee' component ={TraineeDashboard} />
             </Switch>
         </Router>
     );

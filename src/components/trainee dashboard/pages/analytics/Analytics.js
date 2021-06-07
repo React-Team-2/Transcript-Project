@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import hello from "../../../../../public/assets/hello.svg";
-// import Chart from "../../charts/Chart"
+import Chart from "../../charts/Chart"
 import "./Analytics.css";
 
 class Analytics extends Component {
@@ -11,7 +10,7 @@ class Analytics extends Component {
             {/* <!-- MAIN TITLE STARTS HERE --> */}
 
         <div className="main__title">
-          {/* <img src={hello} alt="hello" /> */}
+          <img src='/assets/hello.svg' alt="hello" />
           <div className="main__greeting">
             <h1>Hello Trainee</h1>
             <p>Welcome to your dashboard</p>
