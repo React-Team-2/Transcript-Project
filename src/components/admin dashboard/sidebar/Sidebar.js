@@ -12,7 +12,7 @@ let history = useHistory();
 
   const handleLogout = () => {
     Auth.logOut(()=>{
-      history.push('/');
+      history.push('/login');
     })   
   }
   
