@@ -68,7 +68,7 @@ const Login = (props) => {
                 props.history.push("/admin");
               })
             }
-            else if (roleTitle === 'trainee'){
+            else if (roleTitle === 'user'){
               Auth.login(()=>{
                 props.history.push('/trainee')
               })
