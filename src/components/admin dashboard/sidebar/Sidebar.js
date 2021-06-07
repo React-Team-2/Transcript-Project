@@ -1,13 +1,22 @@
 import "./Sidebar.css";
-// import logo from '../logo.png'
+import{Button} from 'react-bootstrap'
 
 import {BrowserRouter as Link} from "react-router-dom";
-const Sidebar = ({ sidebarOpen, closeSidebar }) => {
+
+
+
+const Sidebar = (props, { sidebarOpen, closeSidebar }) => {
+
+
+  const handleLogout = () => {
+    props.history.push('/Login');
+  }
+  
   return (
     <div className={sidebarOpen ? "sidebar_responsive" : ""} id="sidebar">
       <div className="sidebar__title">
         <div className="sidebar__img">
-          {/* <img src={logo} alt="logo" /> */}
+          <img src='/assets/logo.png' alt="logo" />
           <h1>TMS</h1>
         </div>
         <i
@@ -59,7 +68,9 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
        
         <div className="sidebar__logout p-4 fixed-bottom">
         <i className="fas fa-sign-out-alt" />
-          <a href="#">Log out</a>
+              <Button variant="danger " type="submit" onClick={()=>{handleLogout()}}>
+                Logout
+              </Button>
         </div>
       </div>
     </div>

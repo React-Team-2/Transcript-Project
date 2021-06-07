@@ -3,7 +3,7 @@ import Main from "./main/Main";
 import Navbar from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
 
-const AdminDashboard = () => {
+const AdminDashboard = (props) => {
   const [sidebarOpen, setsidebarOpen] = useState(false);
   const openSidebar = () => {
     setsidebarOpen(true);

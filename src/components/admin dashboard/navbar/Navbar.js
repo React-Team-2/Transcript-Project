@@ -1,5 +1,4 @@
 import "./Navbar.css";
-// import avatar from "../../../../public/assets/avatar.svg";
 
 const Navbar = ({ sidebarOpen, openSidebar }) => {
   return (
@@ -15,7 +14,7 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
       </div>
       <div className="navbar__right">
         <a href="#!">
-          {/* <img width="30" src={avatar} alt="avatar" /> */}
+          <img width="30" src='/assets/avatar.svg' alt="avatar" />
         </a>
       </div>
     </nav>
