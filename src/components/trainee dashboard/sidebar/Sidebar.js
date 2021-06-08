@@ -34,7 +34,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
         </div>
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-home"></i>
-          <a href="/dashboard">Dashboard</a>
+          <a href="/trainee/dashboard">Dashboard</a>
         </div>
 
         <div className="sidebar__link">
@@ -54,7 +54,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
           <a href="/trainee/others">Others</a>
         </div>
 
-        <div className="sidebar__logout p-4 fixed-bottom">
+        <div className="sidebar__logout">
           <i className="fas fa-sign-out-alt" />
           <Button
             variant="danger "
