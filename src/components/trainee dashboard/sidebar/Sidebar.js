@@ -49,6 +49,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
           <i className="fas fa-columns"></i>
           <a href="/trainee/tracks">Tracks</a>
         </div>
+        
         <div className="sidebar__link">
           <i className="fas fa-cog"></i>
           <a href="/trainee/others">Others</a>
