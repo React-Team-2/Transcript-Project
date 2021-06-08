@@ -11,8 +11,9 @@ const Main = () => {
   return (
     <main>
       <Router>
-          <Route exact path="/trainee/dashboard" component={Analytics} />
+         
         <Switch>
+          <Route exact path="/trainee/dashboard" component={Analytics} />
           <Route exact path="/trainee/courses" component={Course} />
           <Route exact path="/trainee/transcript" component={Transcript} />
           <Route exact path="/trainee/tracks" component={Track} />
