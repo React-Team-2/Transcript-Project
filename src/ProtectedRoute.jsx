@@ -25,7 +25,7 @@ export default function ProtectedRoute({component: Component,...rest}) {
                     
                     return <Redirect to={{pathname:"/", state:{from:props.location}}}/>
                 }else{
-                    console.log("You don not have acess to this page")
+                    console.log("You do not have acess to this page")
                    return <Redirect to={{pathname:"/", state:{from:props.location}}}/>
                    
                 }
