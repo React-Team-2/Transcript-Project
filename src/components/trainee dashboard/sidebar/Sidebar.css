@@ -86,8 +86,9 @@
 }
 
 .sidebar__logout {
-  margin-top: 20px;
-  padding: 10px;
+  position: relative;
+  top:120px;
+  padding:10px ;
   color: #e65061;
 }
 

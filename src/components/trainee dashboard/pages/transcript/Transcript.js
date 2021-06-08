@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Pagination from "../../pagination/Pagination";
 import "../courses/Course.css";
+import axios from "axios";
 
 class transcript extends Component {
   render() {
-
+   
+    
     let data =this.props.transcript
     return (
       <div class="container p-5">
@@ -29,9 +31,7 @@ class transcript extends Component {
           <div class="col">
           <label>Track</label>:<span class="ms-3">{data.track}</span>
           </div>
-          <div className="col">
-           <label>Gender</label>:<span className="ms-3">{data.gender}</span>
-          </div>
+         
         </div>
 
 
@@ -65,5 +65,8 @@ const mapStateToProps = state =>{
      transcript:state.transcript
    }
 }
+
+
+
 
 export default connect(mapStateToProps) (transcript);

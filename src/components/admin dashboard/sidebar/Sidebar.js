@@ -39,7 +39,7 @@ let history = useHistory();
          
         <div className="sidebar__link active_menu_link">
         <i className="fa fa-home"></i>
-          <a  href="/dashboard" >Dashboard</a>
+          <a  href="/admin/dashboard" >Dashboard</a>
         </div>
         
         <div className="sidebar__link active">
@@ -70,7 +70,7 @@ let history = useHistory();
        
      
        
-        <div className="sidebar__logout p-4 fixed-bottom">
+        <div className="sidebar_logout">
         <i className="fas fa-sign-out-alt" />
               <Button variant="danger " type="submit" onClick={()=>{handleLogout()}}>
                 Logout

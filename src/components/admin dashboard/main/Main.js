@@ -14,7 +14,7 @@ const Main = () => {
   return (
     <main>
       <Router>
-      <Route exact path="/dashboard" component={Analytics} />
+      <Route exact path="/admin/dashboard" component={Analytics} />
         <Switch>
           <Route path="/admin/trainees" component={Trainee} />
           <Route path="/admin/courses" component={Course} />

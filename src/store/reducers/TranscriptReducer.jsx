@@ -1,9 +1,9 @@
+
 const transcriptState={
     traineeName:"Victor Aremu",
     traineeID:"TKB3-001",
     batch:"Batch3",
     track:"Media & Design",
-    gender:"Male",
     isLoading:"Data is loading...",
     
 
@@ -14,7 +14,8 @@ const transcriptState={
 
 
 
-const TranscriptReducer = (state=transcriptState) => {
-     return state
+const TranscriptReducer = (state=transcriptState,action) => {
+    return state;
+    
 }
  export default TranscriptReducer;

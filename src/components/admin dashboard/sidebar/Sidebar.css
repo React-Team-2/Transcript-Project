@@ -84,20 +84,21 @@
   font-size: 18px;
 }
 
-.sidebar__logout {
-  margin-top: 20px;
-  padding: 10px;
+.sidebar_logout {
+  position: relative;
+  top:20px;
+  padding:10px ;
   color: #e65061;
 }
 
-.sidebar__logout > a {
+.sidebar_logout > a {
   text-decoration: none;
   color: #e65061;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.sidebar__logout > i {
+.sidebar_logout > i {
   margin-right: 10px;
   font-size: 18px;
 }
