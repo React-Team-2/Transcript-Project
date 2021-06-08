@@ -91,14 +91,14 @@
   color: #e65061;
 }
 
-.sidebar_logout > a {
+.sidebar__logout > a {
   text-decoration: none;
   color: #e65061;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.sidebar_logout > i {
+.sidebar__logout > i {
   margin-right: 10px;
   font-size: 18px;
 }
