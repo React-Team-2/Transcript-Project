@@ -97,7 +97,7 @@ class Analytics extends Component {
                 </div>
                 <i className="fa fa-usd" aria-hidden="true"></i>
               </div>
-              <Chart />
+              {/* <Chart /> */}
             </div>
           </div>
           {/* <!-- CHARTS ENDS HERE --> */}
