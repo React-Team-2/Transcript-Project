@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Chart from "../../charts/Chart";
 import "./Analytics.css";
+// import Chart from "../../charts/Chart";
 
 class Analytics extends Component {
     render() {
@@ -8,9 +8,6 @@ class Analytics extends Component {
             <div>
                  <div className="main__container">
      
-
-        
-
         {/* <!-- MAIN CARDS STARTS HERE --> */}
         <div className="main__anCards">
           <div className="anCard">
@@ -99,7 +96,7 @@ class Analytics extends Component {
               </div>
               <i className="fa fa-usd" aria-hidden="true"></i>
             </div>
-            <Chart />
+            {/* <Chart /> */}
           </div>
         </div>
         {/* <!-- CHARTS ENDS HERE --> */}
