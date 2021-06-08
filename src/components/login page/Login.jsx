@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import "./Login.css";
+import "./login.css";
 import axios from "axios";
 import { setUserSession } from "../../util/Common";
 import { sessionService } from "redux-react-session";
