@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./login.css";
 import axios from "axios";
-import { setUserSession } from "../../util/Common";
-import { sessionService } from "redux-react-session";
+import Auth from '../../Auth';
+
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -12,40 +12,70 @@ const Login = (props) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     setLoading(true);
+    console.log(email);
+    console.log(password);
+
+
+    const data = {
+      email: email,
+      password: password,
+    }
 
     axios
-      .post("https://amalitech-tms.herokuapp.com/auth/login", {
-        email: "email",
-        password: "password",
+      .post("https://amalitech-tms.herokuapp.com/auth/login", data, {
         headers: {
           "Content-type": "application/json",
         },
       })
       .then((response) => {
         const { data } = response;
-        console.log(data);
+
+        // if (response.status === 200) {
+        //   const userData = data.role.role_title;
+        //   const token = data.token;
+        //   sessionService
+        //     .saveSession(token)
+        //     .then(() => {
+        //       sessionService
+        //         .saveUser(userData)
+        //         .then(() => {
+        //           console.log(userData)
+        //           if (data.role.role_title === "admin") {
+        //             console.log(userData)
+        //             props.history.push("/admin");
+        //           } else if (userData === "user") {
+        //             props.history.push("/trainee");
+        //           }
+        //         })
+        //         .catch((error) => console.error("error >>>", error));
+        //     })
+        //     .catch((error) => console.error("error >>> ", error));
+        // }
+
         if (response.status === 200) {
-          const userData = data.role;
           const token = data.token;
-          sessionService
-            .saveSession(token)
-            .then(() => {
-              sessionService
-                .saveUser(userData)
-                .then(() => {
-                  if (data.role === "admin") {
-                    props.history.push("/admin");
-                  } else if (userData === "user") {
-                    props.history.push("/trainee");
-                  }
-                })
-                .catch((error) => console.error("error >>>", error));
-            })
-            .catch((error) => console.error("error >>> ", error));
+          const roleTitle = data.role.role_title;
+          console.log(token);
+          console.log(roleTitle);
+          localStorage.setItem('token', token);
+          localStorage.setItem('roleTitle', roleTitle);
+
+            if(roleTitle === 'admin'){
+              Auth.login(()=>{
+                props.history.push("/admin");
+              })
+            }
+            else if (roleTitle === 'user'){
+              Auth.login(()=>{
+                props.history.push('/trainee')
+              })
+            }
         }
-        // setLoading(false);
+
+        // // setLoading(false);
         // setUserSession(response.data.token, response.data.user);
         // props.history.push("/admin");
         // console.log("response >>> ", response);
@@ -83,8 +113,8 @@ const Login = (props) => {
               <Button
                 variant="primary btn-block"
                 type="submit"
-                onClick={() => {
-                  handleLogin();
+                onClick={(e) => {
+                  handleLogin(e);
                 }}
               >
                 Login

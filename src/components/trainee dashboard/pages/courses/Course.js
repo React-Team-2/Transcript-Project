@@ -5,15 +5,16 @@ import "../courses/Course.css";
 class course extends Component {
  
   render() {
+    console.log(this.props.courses)
      
-    this.records=[
-      {id:"1",title:"Programming with Java",code:"PWJ",date:"2021-01-04"},
-      {id:"2",title:"Programming with Python",code:"PWJ",date:"2021-01-04"},
-      {id:"3",title:"Relational Database",code:"PWJ",date:"2021-01-04"},
-      {id:"4",title:"Web Engineering",code:"PWJ",date:"2021-01-04"},
-      {id:"5",title:"Testing with Cypress",code:"STWC",date:"2021-03-15"},
-      {id:"6",title:"ReactJs",code:"React",date:"2021-03-15"}
-    ]
+    // this.records=[
+    //   {id:"1",title:"Programming with Java",code:"PWJ",date:"2021-01-04"},
+    //   {id:"2",title:"Programming with Python",code:"PWJ",date:"2021-01-04"},
+    //   {id:"3",title:"Relational Database",code:"PWJ",date:"2021-01-04"},
+    //   {id:"4",title:"Web Engineering",code:"PWJ",date:"2021-01-04"},
+    //   {id:"5",title:"Testing with Cypress",code:"STWC",date:"2021-03-15"},
+    //   {id:"6",title:"ReactJs",code:"React",date:"2021-03-15"}
+    // ]
     
     return (
       <div class="container p-5">
@@ -49,13 +50,13 @@ class course extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.records.map((course) => {
+            {this.props.courses.map((data) => {
               return (
                 <tr>
-                  <td>{course.id}</td>
-                  <td>{course.title}</td>
-                  <td>{course.code}</td>
-                  <td>{course.date}</td>
+                  <td>{data.id}</td>
+                  <td>{data.title}</td>
+                  <td>{data.code}</td>
+                  <td>{data.date}</td>
                  
                 </tr>
               );
@@ -74,9 +75,5 @@ class course extends Component {
        }
   }
 
-  const mapDispatchToProps = dispatch =>{
-     return{
-      loadCourse:()=>dispatch({type:"COURSES"})
-     }
-  }
-export default connect(mapStateToProps,mapDispatchToProps) (course);
+  
+export default connect(mapStateToProps)(course);

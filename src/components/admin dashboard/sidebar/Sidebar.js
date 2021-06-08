@@ -1,15 +1,19 @@
 import "./Sidebar.css";
 import{Button} from 'react-bootstrap'
+import {useHistory} from 'react-router-dom';
+import Auth from '../../../Auth'
 
 import {BrowserRouter as Link} from "react-router-dom";
 
 
 
 const Sidebar = (props, { sidebarOpen, closeSidebar }) => {
-
+let history = useHistory();
 
   const handleLogout = () => {
-    props.history.push('/Login');
+    Auth.logOut(()=>{
+      history.push('/login');
+    })   
   }
   
   return (
@@ -40,28 +44,28 @@ const Sidebar = (props, { sidebarOpen, closeSidebar }) => {
         
         <div className="sidebar__link active">
           <i className="fas fa-users" aria-hidden="true"></i>
-          <a href="/trainees">Trainees</a>
+          <a href="/admin/trainees">Trainees</a>
          
         </div>
         <div className="sidebar__link">
           <i  className="fas fa-tasks"></i>
-          <a href="/courses">Courses</a>
+          <a href="/admin/courses">Courses</a>
          
         </div>
 
         <div className="sidebar__link">
           <i  className="fas fa-cog"></i>
-          <a href="/tracks">Tracks</a>
+          <a href="/admin/tracks">Tracks</a>
         </div>
 
         <div className="sidebar__link">
           <i  className="fas fa-tasks"></i>
-          <a href="/assessment">Assessment</a>
+          <a href="/admin/assessment">Assessment</a>
         </div>
 
         <div className="sidebar__link">
           <i className="fas fa-file-alt"></i>
-          <a href="/progress-report">Progress Report</a>
+          <a href="/admin/progress-report">Progress Report</a>
         </div>
        
      
