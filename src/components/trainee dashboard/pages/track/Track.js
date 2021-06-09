@@ -63,7 +63,7 @@ class track extends Component {
         <tr>
           <td className="text-center" colSpan="10">
             <div className="spinner-border m-5" role="status">
-              <span className="visually-hidden">Loading...</span>
+              <span className="visually-hidden"></span>
             </div>
           </td>
         </tr>
