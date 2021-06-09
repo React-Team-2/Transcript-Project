@@ -100,7 +100,7 @@ class trainee extends Component {
                   >
                     Close
                   </button>
-                  <button type="button" className="btn btn-success">
+                  <button type="button" className="btn btn-success"  data-bs-dismiss="modal">
                     Assign
                   </button>
                 </div>

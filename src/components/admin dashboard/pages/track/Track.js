@@ -52,7 +52,7 @@ class Track extends Component {
                       >
                         Close
                       </button>
-                      <button type="button" className="btn btn-success">
+                      <button type="button" className="btn btn-success"  data-bs-dismiss="modal">
                         Save changes
                       </button>
                     </div>
