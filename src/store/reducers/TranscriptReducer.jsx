@@ -2,20 +2,34 @@
 const transcriptState={
     traineeName:"Victor Aremu",
     traineeID:"TKB3-001",
-    batch:"Batch3",
+    batch:"Batch 3",
     track:"Media & Design",
-    isLoading:"Data is loading...",
+    isLoading:false,
     
 
-    results:[
+    results:{
+        java:90,
+        python:100
+        
+    }
          
-    ]
+    
 }
 
 
 
 const TranscriptReducer = (state=transcriptState,action) => {
-    return state;
+      switch(action.type){
+          case "GET_TRANSCRIPT":
+            return{
+                ...state,
+                fetched:state.isLoading,
+                javaResults:state.results.java,
+                pythonResults:state.results.python
+            } 
+          default: return state
+      }
+   
     
 }
  export default TranscriptReducer;

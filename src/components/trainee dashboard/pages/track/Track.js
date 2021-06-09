@@ -8,8 +8,6 @@ class track extends Component {
     super(props);
     this.fetchTracks();
   }
-
-
  
 
   async fetchTracks() {
@@ -34,7 +32,7 @@ class track extends Component {
 
 
   render() {
-    let trackData = this.props.track;
+    let trackData = this.props.tracks;
     let fetched = this.props.loading;
     
     // Date Created
@@ -113,8 +111,8 @@ class track extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.allTracks.fetched,
-    track: state.allTracks.tracks,
+    loading: state.allTraineeTracks.fetched,
+    tracks: state.allTraineeTracks.tracks,
   };
 };
 

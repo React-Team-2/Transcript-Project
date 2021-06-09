@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 
 class AddCourse extends Component {
+  constructor(props){
+    super(props)
+  }
+
   render() {
+    const tracks = () =>{
+      return (
+          this.props.tracks.map((track) =>{
+            return (
+              <option value={track.id} className="mb-1">
+                        {track.track_name}
+              </option>
+            )
+          })
+      )
+    }
     return (
       /*ADD COURSE HERE*/
 
@@ -13,6 +28,7 @@ class AddCourse extends Component {
               <div className="col">
                 <label className="form-label">Course</label>
                 <input
+                  value={this.props.courseTitle}
                   className="form-control"
                   type="text"
                   placeholder="Course Title"
@@ -21,6 +37,7 @@ class AddCourse extends Component {
               <div className="col">
                 <label className="form-label">Code</label>
                 <input
+                  value={this.props.courseCode}
                   className="form-control"
                   type="text"
                   placeholder="Course Code"
@@ -33,13 +50,7 @@ class AddCourse extends Component {
                   Track
                 </label>
                 <select name="tracks" className="form-select" multiple>
-                  <option value="foundation" className="mb-1">
-                    Foundation
-                  </option>
-                  <option value="media" className="mb-1" >Media & Design</option>
-                  <option value="software" className="mb-1">Software Development & Evolution</option>
-                  <option value="machinelearn" className="mb-1" >Machine Learning & Data Analytics</option>
-                  <option value="salesforce" className="mb-1" >Salesforce Commerce Cloud</option>
+                    {tracks}
                 </select>
                 <p className="fs-6 text-muted">Hold ctrl to select multiple tracks</p>
               </div>

@@ -1,16 +1,19 @@
-const courseState =[
-    {id:"1",title:"Programming with Java",code:"PWJ",date:"2021-01-04"},
-    {id:"2",title:"Programming with Python",code:"PWJ",date:"2021-01-04"},
-    {id:"3",title:"Relational Database",code:"PWJ",date:"2021-01-04"},
-    {id:"4",title:"Web Engineering",code:"PWJ",date:"2021-01-04"},
-    {id:"5",title:"Testing with Cypress",code:"STWC",date:"2021-03-15"},
-    {id:"6",title:"ReactJs",code:"React",date:"2021-03-15"}
-]
-   
 
-
-const AllCoursesReducer = (state=courseState) => {
+const AllCoursesReducer = (state={courses:[], fetched:false}, action) => {
     
-    return state;
+
+    switch(action.type){
+        case "UPDATE_COURSES":
+           return {
+            ...state.courses,
+               courses: action.payload,
+               fetched:true
+           }
+          
+
+        default: return state
+    }
+   
 }
+
 export default AllCoursesReducer;

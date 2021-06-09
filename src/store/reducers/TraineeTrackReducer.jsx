@@ -1,5 +1,5 @@
 
-const AllTracksReducer = (state={tracks:[], fetched:false}, action) => {
+const AllTraineeTracksReducer = (state={tracks:[], fetched:false}, action) => {
     
 
     switch(action.type){
@@ -16,4 +16,4 @@ const AllTracksReducer = (state={tracks:[], fetched:false}, action) => {
    
 }
 
-export default AllTracksReducer;
+export default AllTraineeTracksReducer;
