@@ -91,9 +91,6 @@ class track extends Component {
               </select>
             </div>
           </div>
-          <div class="col">
-            <button className="btn btn-success">Print</button>
-          </div>
         </div>
         <hr />
         <table className="table table-striped table-hover">
