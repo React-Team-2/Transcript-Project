@@ -32,29 +32,6 @@ const Login = (props) => {
       })
       .then((response) => {
         const { data } = response;
-
-        // if (response.status === 200) {
-        //   const userData = data.role.role_title;
-        //   const token = data.token;
-        //   sessionService
-        //     .saveSession(token)
-        //     .then(() => {
-        //       sessionService
-        //         .saveUser(userData)
-        //         .then(() => {
-        //           console.log(userData)
-        //           if (data.role.role_title === "admin") {
-        //             console.log(userData)
-        //             props.history.push("/admin");
-        //           } else if (userData === "user") {
-        //             props.history.push("/trainee");
-        //           }
-        //         })
-        //         .catch((error) => console.error("error >>>", error));
-        //     })
-        //     .catch((error) => console.error("error >>> ", error));
-        // }
-
         if (response.status === 200) {
           const token = data.token;
           const roleTitle = data.role.role_title;
@@ -74,11 +51,6 @@ const Login = (props) => {
               })
             }
         }
-
-        // // setLoading(false);
-        // setUserSession(response.data.token, response.data.user);
-        // props.history.push("/admin");
-        // console.log("response >>> ", response);
       })
       .catch((error) => {
         console.error("error >>>", error);
