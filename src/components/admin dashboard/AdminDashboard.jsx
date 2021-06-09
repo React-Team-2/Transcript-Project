@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Main from "./main/Main";
-import Navbar from "./navbar/Navbar";
+import NavbarCom from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -14,10 +14,10 @@ const AdminDashboard = (props) => {
   };
   return (
     <div className="main-wrapper">
-      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
       <div className="d-flex">
         <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
         <div className="container">
+        <NavbarCom sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
         <Main/>
         </div>
       </div>

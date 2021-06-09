@@ -1,24 +1,39 @@
-import "./Navbar.css";
+import React from "react";
+import {
+  Navbar,
+  NavDropdown,
+  Nav,
+  Button,
+  Container
+} from "react-bootstrap";
 
-const Navbar = ({ sidebarOpen, openSidebar }) => {
+const NavbarCom = () => {
+
+  const handleLogout = () =>{
+
+  }
   return (
-    <nav className="navbar">
-      <div className="nav_icon" onClick={() => openSidebar()}>
-        <i className="fa fa-bars" aria-hidden="true"></i>
-      </div>
-      <div className="navbar__left">
-       
-        <a className="active_link" href="#">
-          Admin
-        </a>
-      </div>
-      <div className="navbar__right">
-        <a href="#!">
-          <img width="30" src='/assets/avatar.svg' alt="avatar" />
-        </a>
-      </div>
-    </nav>
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="/trainee">Admin</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <NavDropdown drop="left" title={<img width="30" src='/assets/avatar.svg' alt="avatar" />} id="basic-nav-dropdown">
+              <NavDropdown.Item disabled className="text-dark">Victor Aremu</NavDropdown.Item>
+              <NavDropdown.Item disabled className="text-dark">
+                Batch 3
+              </NavDropdown.Item>
+              <NavDropdown.Item disabled className="text-dark">Media & Design</NavDropdown.Item>
+              
+              <div className="w-full text-center mt-2">
+              <Button className="mx-auto" onClick={()=>{handleLogout()}}>sign out</Button>
+              </div>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
-
-export default Navbar;
+export default NavbarCom;

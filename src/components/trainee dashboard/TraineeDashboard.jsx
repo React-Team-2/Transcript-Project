@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Main from "./main/Main";
-import Navbar from "./navbar/Navbar";
+import NavbarCom from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
 
 
@@ -13,10 +13,14 @@ const App = () => {
     setsidebarOpen(false);
   };
   return (
-    <div className="main_wrapper">
-      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-      <Main />
-      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+    <div className="main-wrapper">
+      <div className="d-flex">
+        <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+        <div className="container-fluid">
+        <NavbarCom sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+        <Main/>
+        </div>
+      </div>
     </div>
   );
 };
