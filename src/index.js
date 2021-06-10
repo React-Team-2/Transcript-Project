@@ -8,6 +8,7 @@ import {createStore,combineReducers, applyMiddleware, compose} from 'redux';
 import AllCoursesReducer from "./store/reducers/AllCoursesReducer";
 import TraineeTrackReducer from "./store/reducers/TraineeTrackReducer";
 import TranscriptReducer from "./store/reducers/TranscriptReducer";
+import AllTraineesReducer from "./store/reducers/AllTraineesReducer"
 import loginReducer from './store/reducers/loginReducer';
 import aboutReducer from './store/reducers/aboutReducer';
 import {sessionReducer } from "redux-react-session";
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     as: aboutReducer,
     allCourses:AllCoursesReducer,
     allTraineeTracks:TraineeTrackReducer,
-    transcript:TranscriptReducer
+    transcript:TranscriptReducer,
+    allTrainees:AllTraineesReducer
     // session: sessionReducer,
 })
 

@@ -1,8 +1,18 @@
-import React, { Component } from "react";
+import React, {useState } from "react";
+import {connect} from "react-redux";
+import {Button, Modal} from "react-bootstrap";
+import axios from "axios";
 
-class AllTrainees extends Component {
-  render() {
-    this.trainees = [
+
+const AllTrainees=(props)=>  {
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+ 
+ 
+    const trainees = [
       { id: "1", fName: "Victor", lName: "Aremu", currentTrack:"Media & Design", date: "2021-05-28" },
       { id: "2", fName: "Agbesi", lName: "Amenyo", currentTrack:"Media & Design", date: "2021-05-28" },
       { id: "3", fName: "Felix", lName: "Portuphy", currentTrack:"Media & Design", date: "2021-05-28" },
@@ -13,6 +23,25 @@ class AllTrainees extends Component {
       { id: "8", fName: "Amoro", lName: "Bagei", currentTrack:"Salesforce Commerce Cloud Development", date: "2021-05-28" }
      
     ];
+    async function fetchTrainees() {
+      const fetchedTrainees = await axios.get(
+        "https://amalitech-tms.herokuapp.com/courses",
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
+          },
+        }
+      );
+      const traineeData = fetchedTrainees.data.result;
+          
+      this.props.getTrainees(traineeData);
+    }
+  
+    fetchTrainees();
+
+    let traineeData = props.trainee;
+    let fetched = props.loading;
     return (
 
         <div className="row mt-3">
@@ -34,7 +63,7 @@ class AllTrainees extends Component {
                 </tr>
               </thead>
               <tbody>
-              {this.trainees.map((trainee) => {
+              {trainees.map((trainee) => {
               return (
                 <tr>
                   <td>{trainee.id}</td>
@@ -43,8 +72,8 @@ class AllTrainees extends Component {
                   <td>{trainee.currentTrack}</td>
                   <td>{trainee.date}</td>
                   <td>
-                    <a href="#" className="far fa-edit text-success" />
-                    <a href="#" className="far fa-trash-alt text-danger ms-3" />
+                  <i onClick={handleShow} className="cursor-pointer far fa-edit text-success" />
+                  <i className="far fa-trash-alt text-danger ms-3" />
                   </td>
                 </tr>
               );
@@ -56,6 +85,19 @@ class AllTrainees extends Component {
 
     );
   }
-}
+    
+const mapStateToProps = (state) => {
+  return {
+    loading: state.allTrainees.fetched,
+    trainee: state.allTrainees.courses,
+  };
+};
 
-export default AllTrainees;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getTrainees: (trainees) => dispatch({ type: "UPDATE_TRAINEES", payload:trainees}),
+  };
+};
+
+
+export default connect(mapStateToProps,mapDispatchToProps) (AllTrainees);

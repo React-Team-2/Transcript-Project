@@ -1,16 +1,14 @@
 import React, { Component } from "react";
+import { Row, Col } from "react-bootstrap";
 
 class AssignTraineeCourse extends Component {
   render() {
     return (
-      <div className="row">
-        <div >
-         
-
-          <form className="form">
-            <div className="row mb-3">
-                <div className="col">
-                <label className="form-label">Trainee Name</label>
+      <form className="form">
+        <Row className="mb-3">
+          <Col>
+            <div>
+              <label className="form-label">Trainee Name</label>
               <select className="form-select">
                 <option>Victor Aremu</option>
                 <option>Agbesi Amenyo</option>
@@ -18,12 +16,11 @@ class AssignTraineeCourse extends Component {
                 <option>Kwabena Dwamena</option>
                 <option>Jefferson Addai-Poku</option>
               </select>
-                </div>
-
             </div>
-            <div className="row mb-3">
-                <div className="col">
-                <label className="form-label">Course</label>
+          </Col>
+          <Col>
+            <div>
+              <label className="form-label">Course</label>
               <select className="form-select">
                 <option></option>
                 <option>Programming with Java</option>
@@ -32,13 +29,16 @@ class AssignTraineeCourse extends Component {
                 <option>Testing With Cypress</option>
                 <option>Programming with Python</option>
               </select>
-                </div>
-              
             </div>
-            <div className="row mb-3">
-            <label className="form-label">Course Code</label>
-                <div className="col">
+          </Col>
+        </Row>
 
+
+        <Row className="mb-3">
+          <Col>
+          
+            <div>
+            <label className="form-label">Course Code</label>
               <input
                 className="form-control"
                 type="text"
@@ -47,11 +47,10 @@ class AssignTraineeCourse extends Component {
                 placeholder="Course Code"
               />
             </div>
-                </div>
-             
-            <div className="row mb-3">
-                <div className="col">
-                <label className="form-label">Track</label>
+          </Col>
+          <Col>
+            <div>
+              <label className="form-label">Track</label>
               <select className="form-select">
                 <option>Foundation</option>
                 <option>Media & Design</option>
@@ -59,13 +58,10 @@ class AssignTraineeCourse extends Component {
                 <option>Machine Learning & Data Analytics</option>
                 <option>Salesforce Commerce Cloud Development</option>
               </select>
-                </div>
- 
             </div>
-           
-          </form>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </form>
     );
   }
 }
