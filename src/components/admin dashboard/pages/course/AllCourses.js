@@ -9,35 +9,7 @@ const AllCourses = () =>{
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-    
-    // const courses = [
-    //   {
-    //     id: "1",
-    //     title: "Business Communication",
-    //     code: "BCOM",
-    //     date: "2021-03-15",
-    //   },
-    //   {
-    //     id: "2",
-    //     title: "Programming with Java",
-    //     code: "PWJ",
-    //     date: "2021-03-15",
-    //   },
-    //   {
-    //     id: "3",
-    //     title: "Programming with Python",
-    //     code: "PWP",
-    //     date: "2021-03-15",
-    //   },
-    //   { id: "4", title: "Creative Media", code: "CM", date: "2021-03-15" },
-    //   { id: "5", title: "ReactJs", code: "RJS", date: "2021-03-15" },
-    //   {
-    //     id: "6",
-    //     title: "Testing with Cypress",
-    //     code: "STWC",
-    //     date: "2021-03-15",
-    //   },
-    // ];
+   
 
     async function fetchCourses() {
       const fetchedTracks = await axios.get(
