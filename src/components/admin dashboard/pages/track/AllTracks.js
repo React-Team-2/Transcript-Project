@@ -10,27 +10,6 @@ const  AllTracks=()=> {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
  
-    // const tracks = [
-    //   { id: "1", title: "Media & Design", code: "MD012", date: "2021-05-28" },
-    //   {
-    //     id: "2",
-    //     title: "Software Development & Evolution",
-    //     code: "SDE013",
-    //     date: "2021-05-28",
-    //   },
-    //   {
-    //     id: "3",
-    //     title: "Machine Learning & Data Analytics",
-    //     code: "MLD012",
-    //     date: "2021-05-28",
-    //   },
-    //   {
-    //     id: "4",
-    //     title: "Salesforce Commerce Cloud Development",
-    //     code: "SCC017",
-    //     date: "2021-05-28",
-    //   },
-    // ];
     async function fetchTracks() {
       const fetchedTracks = await axios.get(
         "https://amalitech-tms.herokuapp.com/courses",

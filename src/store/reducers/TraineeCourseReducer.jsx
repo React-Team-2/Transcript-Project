@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 
 // const courseState =[
 //     {id:"1",title:"Programming with Java",code:"PWJ",date:"2021-01-04"},
@@ -11,6 +12,8 @@
    
 
 
+=======
+>>>>>>> 92e72eb (removed courseState array)
 const AllCoursesReducer = (state={courses:[],fetched:false},action) => {
     
      switch(action.type){
