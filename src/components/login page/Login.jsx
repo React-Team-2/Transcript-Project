@@ -15,8 +15,7 @@ const Login = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(email);
-    console.log(password);
+
 
 
     const data = {
@@ -35,8 +34,6 @@ const Login = (props) => {
         if (response.status === 200) {
           const token = data.token;
           const roleTitle = data.role.role_title;
-          console.log(token);
-          console.log(roleTitle);
           localStorage.setItem('token', token);
           localStorage.setItem('roleTitle', roleTitle);
 

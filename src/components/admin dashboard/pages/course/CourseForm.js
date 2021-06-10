@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-class AddCourse extends Component {
-  constructor(props){
-    super(props)
-  }
+class CourseForm extends Component {
 
   render() {
     const tracks = () =>{
@@ -62,4 +59,4 @@ class AddCourse extends Component {
   }
 }
 
-export default AddCourse;
+export default CourseForm;

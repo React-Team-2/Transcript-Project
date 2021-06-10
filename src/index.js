@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import {createStore,combineReducers, applyMiddleware, compose} from 'redux';
 // import thunk from 'redux-thunk';
-import AllCoursesReducer from "./store/reducers/TraineeCourseReducer";
+import AllCoursesReducer from "./store/reducers/AllCoursesReducer";
 import TraineeTrackReducer from "./store/reducers/TraineeTrackReducer";
 import TranscriptReducer from "./store/reducers/TranscriptReducer";
 import loginReducer from './store/reducers/loginReducer';
