@@ -18,11 +18,9 @@ class Auth  {
 
         if (!userId) {
             Auth.authenticated = false;
-            console.log(userId)
         } else {
             // let {auth} = store(null,this.action());
             Auth.authenticated = true;
-            console.log(Auth.authenticated)
             cb();
         }
 

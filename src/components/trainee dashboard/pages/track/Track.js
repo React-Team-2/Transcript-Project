@@ -25,6 +25,7 @@ class track extends Component {
     trackData.map((track) => {
       const date = new Date(track.enrollment_date);
       track.enrollment_date = date.toLocaleDateString();
+      return {}
     });
     this.props.getTracks(trackData);
   }

@@ -23,7 +23,6 @@ export const loginUser = (
     )
     .then((response) => {
       const { data } = response;
-      console.log(data)
       if (response.status === 200) {
         const userData = data.role_type;
 
