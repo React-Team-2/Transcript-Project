@@ -1,19 +1,7 @@
 
-<<<<<<< HEAD
-
-// const courseState =[
-//     {id:"1",title:"Programming with Java",code:"PWJ",date:"2021-01-04"},
-//     {id:"2",title:"Programming with Python",code:"PWJ",date:"2021-01-04"},
-//     {id:"3",title:"Relational Database",code:"PWJ",date:"2021-01-04"},
-//     {id:"4",title:"Web Engineering",code:"PWJ",date:"2021-01-04"},
-//     {id:"5",title:"Testing with Cypress",code:"STWC",date:"2021-03-15"},
-//     {id:"6",title:"ReactJs",code:"React",date:"2021-03-15"}
-// ]
-   
 
 
-=======
->>>>>>> 92e72eb (removed courseState array)
+
 const AllCoursesReducer = (state={courses:[],fetched:false},action) => {
     
      switch(action.type){
