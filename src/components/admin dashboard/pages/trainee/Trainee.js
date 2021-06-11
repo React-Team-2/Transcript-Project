@@ -1,77 +1,73 @@
 import React, { useState } from "react";
-import {Modal,Button} from "react-bootstrap"
-import "../trainee/Trainee.css";
+// import "../trainee/Trainee.css";
 import AddTrainee from "./AddTraineeForm";
 import AllTrainees from "./AllTrainees";
 import AssignTraineeCourse from "./AssignTraineeCourse";
+import { Modal, Button, Row, Col } from "react-bootstrap";
 
-const Trainee =()=> {
+const Trainee = () => {
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
-    return (
-      <div className="container p-5">
-        <div className="row mb-3">
-          <div className="col-12 text-center">
-          <Button variant="primary" onClick={handleShow}>
-             Add trainee
-            </Button>
-            
+
+  return (
+    <div className="container p-5">
+      <Row className="mb-3">
+        <Col>
+          <div className="text-center">
             <Button variant="primary" onClick={handleShow}>
-               Assign a course
+              Add Trainee
             </Button>
-
+            {"  "}
+            <Button variant="primary" onClick={handleShow}>
+              Assign Course
+            </Button>
           </div>
-        
-        </div>
+        </Col>
+      </Row>
 
-        <div className="row">
-          <AllTrainees />
+      <Row>
+        <AllTrainees />
 
+        {/* Add Trainee Modal */}
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add trainee</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <AddTrainee />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+          {/* Assign Course Modal */}
           <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Trainee</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="p-5">
-        <AddTrainee/>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Assign Course</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="p-5">
-        <AssignTraineeCourse/>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Assign
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-
-          
-        
-        </div>
-
-
-      </div>
-    );
-  
-}
+          <Modal.Header closeButton>
+            <Modal.Title>Add trainee</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <AssignTraineeCourse />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </Row>
+    </div>
+  );
+};
 
 export default Trainee;

@@ -1,44 +1,36 @@
-import React from 'react'
+import React from "react";
+import { Row, Col } from "react-bootstrap";
 
 export default function EditTrackInfo() {
-    return (
-        <div className="row">
-        
-
-
-        <form className="form">
-          <div className="row mb-3">
-            <div className="col">
-              <label className="form-label">Track Title</label>
-              <input
-                className="form-control"
-                type="text"
-                
-              />
-            </div>
-            <div className="col">
-              <label className="form-label">Track Code</label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder=""
-              />
-            </div>
+  return (
+    <form className="form">
+      <Row className="mb-3">
+        <Col>
+          <div>
+            <label className="form-label">Track Title</label>
+            <input className="form-control" type="text" />
           </div>
-          <div className="row mb-3">
-            <div className="col">
-              <label className="form-label">Date Created</label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Enter email"
-              />
-            </div>
-          
+        </Col>
+        <Col>
+          <div>
+            <label className="form-label">Track Code</label>
+            <input className="form-control" type="text" placeholder="" />
           </div>
-          
-        </form>
-      
-    </div>
-    )
+        </Col>
+      </Row>
+
+      <Row className="mb-3">
+        <Col>
+          <div>
+            <label className="form-label">Date Created</label>
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Enter email"
+            />
+          </div>
+        </Col>
+      </Row>
+    </form>
+  );
 }

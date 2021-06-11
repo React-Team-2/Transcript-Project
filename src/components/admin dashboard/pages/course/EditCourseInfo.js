@@ -1,21 +1,27 @@
 import React from "react";
+import {Row,Col} from "react-bootstrap"
 
 export default function EditCourseInfo() {
   return (
-    <div className="row">
-      <form className="form">
-        <div className="row mb-3">
-          <div className="col">
+    <form className="form">
+      <Row className="mb-3">
+        <Col>
+          <div>
             <label className="form-label">CourseTitle</label>
             <input className="form-control" type="text" />
           </div>
-          <div className="col">
+        </Col>
+        <Col>
+          <div>
             <label className="form-label">Course Code</label>
             <input className="form-control" type="text" placeholder="" />
           </div>
-        </div>
-        <div className="row mb-3">
-          <div className="col">
+        </Col>
+      </Row>
+
+      <Row className="mb-3">
+        <Col>
+          <div>
             <label className="form-label">Date Created</label>
             <input
               className="form-control"
@@ -23,8 +29,8 @@ export default function EditCourseInfo() {
               placeholder="Enter email"
             />
           </div>
-        </div>
-      </form>
-    </div>
+        </Col>
+      </Row>
+    </form>
   );
 }

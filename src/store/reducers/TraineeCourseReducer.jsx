@@ -1,6 +1,4 @@
 
-
-
 const AllCoursesReducer = (state={courses:[],fetched:false},action) => {
     
      switch(action.type){
