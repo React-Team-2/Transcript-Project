@@ -8,10 +8,11 @@ import { useSelector, useDispatch} from "react-redux";
 import axios from "axios";
 
 const Course = (props) => {
-  const [show, setShow] = useState(false);
+  
 
   const state = useSelector(state => state.allCourses);
   const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -26,6 +27,7 @@ const Course = (props) => {
       }
     );
     const courseData = fetchedTracks.data.result;
+    
     courseData.map((course) => {
       const date = new Date(course.date_created);
       course.date_created = date.toLocaleDateString();

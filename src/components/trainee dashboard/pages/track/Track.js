@@ -21,6 +21,7 @@ class track extends Component {
       }
     );
     const trackData = fetchedTracks.data.result;
+   
         
     trackData.map((track) => {
       const date = new Date(track.enrollment_date);

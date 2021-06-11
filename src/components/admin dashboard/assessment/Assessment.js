@@ -29,8 +29,8 @@ class Assessment extends Component {
                   <td>{course.date}</td>
                   <td>{course.score}</td>
                   <td>
-                    <a href="#" className="far fa-edit text-success" />
-                    <a href="#" className="far fa-trash-alt text-danger ms-3" />
+                    <i className="far fa-edit text-success" />
+                    <i className="far fa-trash-alt text-danger ms-3" />
                   </td>
                 </tr>
               );

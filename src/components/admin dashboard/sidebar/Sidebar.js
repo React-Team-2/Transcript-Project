@@ -39,7 +39,7 @@ let history = useHistory();
          
         <div className="sidebar__link active_menu_link">
         <i className="fa fa-home"></i>
-          <a  href="/admin/dashboard" >Dashboard</a>
+          <a  href="/admin" >Dashboard</a>
         </div>
         
         <div className="sidebar__link active">

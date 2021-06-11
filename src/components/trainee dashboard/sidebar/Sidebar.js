@@ -34,7 +34,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
         </div>
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-home"></i>
-          <a href="/trainee/dashboard">Dashboard</a>
+          <a href="/trainee">Dashboard</a>
         </div>
 
         <div className="sidebar__link">
