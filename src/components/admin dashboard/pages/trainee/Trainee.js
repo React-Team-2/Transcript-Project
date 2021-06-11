@@ -36,6 +36,24 @@ const Trainee = () => {
             <Modal.Title>Add trainee</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            <AddTrainee />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+          {/* Assign Course Modal */}
+          <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add trainee</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
             <AssignTraineeCourse />
           </Modal.Body>
           <Modal.Footer>
