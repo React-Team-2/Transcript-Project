@@ -1,3 +1,9 @@
+import * as actions from "../actions/action"
+const initialState={
+    laoding:false,
+    courses:[],
+    error:""
+}
 
 const AllCoursesReducer = (state={courses:[], fetched:false}, action) => {
     
@@ -9,6 +15,10 @@ const AllCoursesReducer = (state={courses:[], fetched:false}, action) => {
                courses: action.payload,
                fetched:true
            }
+        case actions.addCourse:
+            return{
+                newCourse:initialState.courses.concat({})
+            }
           
 
         default: return state

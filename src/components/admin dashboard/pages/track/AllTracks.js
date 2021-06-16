@@ -2,36 +2,43 @@ import React, { useState } from "react";
 import {connect} from "react-redux";
 import {Button, Modal} from "react-bootstrap";
 import axios from "axios";
+import AddTrack from "./AddTrackForm";
 
-const  AllTracks=()=> {
+const  AllTracks=(props)=> {
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
  
-    async function fetchTracks() {
-      const fetchedTracks = await axios.get(
-        "https://amalitech-tms.herokuapp.com/courses",
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
-          },
-        }
-      );
-      const trackData = fetchedTracks.data.result;
-          
-      this.props.getTracks(trackData);
-    }
-  
-    fetchTracks();
 
-    let trackData = this.props.tracks;
-    let fetched = this.props.loading;
+  async function fetchTracks() {
+    const fetchedTracks = await axios.get(
+      "https://amalitech-tms.herokuapp.com/tracks?user=60ba4ef1303e0f1b04b7a26c",
+      {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
+        },
+      }
+    );
+    const trackData = fetchedTracks.data.result;
+   
+        
+    trackData.map((track) => {
+      const date = new Date(track.enrollment_date);
+      track.enrollment_date = date.toLocaleDateString();
+      return {}
+    });
+    props.getTracks(trackData);
+  }
+   fetchTracks()
+
+
+    let trackData = props.tracks;
+    let fetched = props.loading;
 
     return (
-      <div className="row mt-3">
+      <div className="mt-3">
         <div className="col-12">
           <span className="d-flex align-middle">
             <i className="fas fa-file-alt" />
@@ -43,44 +50,64 @@ const  AllTracks=()=> {
             <tr>
               <th>#</th>
               <th>Track Title</th>
-              <th>Track Code</th>
+              <th>Track Master</th>
               <th>Date Created</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {trackData.map((track) => {
+            {trackData.map((track,index) => {
               return (
-                <tr>
-                  <td>{track.id}</td>
-                  <td>{track.title}</td>
-                  <td>{track.code}</td>
-                  <td>{track.date}</td>
+                <tr key={index}>
+                  <td>{index}</td>
+                  <td>{track.track_name}</td>
+                  <td>{track.track_master}</td>
+                  <td>{track.enrollment_date}</td>
                   <td>
-                  <i onClick={handleShow} className="cursor-pointer far fa-edit text-success" />
-                    <i className="far fa-trash-alt text-danger ms-3" />
+                  <button onClick={() => handleShow()}
+                    type="button" className="cursor-pointer far fa-edit btn btn-success" />
+                       {" "}
+                    <button type="button" className="far fa-trash-alt  btn btn-danger" />
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+        <Modal  show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Update Track</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-5">
+        <AddTrack
+            trackName="Media & Design"
+            trackMaster="Emmanuel Asaber"     
+        />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </div>
     );
   }
 
-  
+ 
 const mapStateToProps = (state) => {
   return {
-    loading: state.allCourses.fetched,
-    courses: state.allCourses.courses,
+    loading: state.allTraineeTracks.fetched,
+    tracks: state.allTraineeTracks.tracks,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTracks: (tracks) => dispatch({ type: "UPDATE_TRACKS", payload:tracks}),
+    getTracks: (tracks) => dispatch({ type: "UPDATE_TRACKS", payload: tracks}),
   };
 };
-
 export default connect(mapStateToProps,mapDispatchToProps) (AllTracks);

@@ -3,28 +3,31 @@ import {Row,Col} from "react-bootstrap";
 
 class AddTrack extends Component {
   render() {
+   
     return (
       <form className="form">
         <Row className="mb-3">
           <Col>
-            <div>
+           
               <label className="form-label">Track Name</label>
               <input
+              value={this.props.trackName}
                 className="form-control"
                 type="text"
                 placeholder="Track Title"
               />
-            </div>
+           
           </Col>
           <Col>
-            <div>
-              <label className="form-label">Code</label>
+            
+              <label className="form-label">Track Master</label>
               <input
+               value={this.props.trackMaster}
                 className="form-control"
                 type="text"
-                placeholder="Track Code"
+                placeholder="Track Master"
               />
-            </div>
+            
           </Col>
         </Row>
 

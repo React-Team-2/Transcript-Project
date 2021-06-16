@@ -1,4 +1,8 @@
-
+const initialState={
+    loading:false,
+    tracks:[],
+    error:""
+}
 const AllTraineeTracksReducer = (state={tracks:[], fetched:false}, action) => {
     
 

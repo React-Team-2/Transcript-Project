@@ -6,10 +6,15 @@ import AssignTraineeCourse from "./AssignTraineeCourse";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 
 const Trainee = () => {
+  
   const [show, setShow] = useState(false);
-
+  const [showAssign ,setShowAssign]=useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleAssignClose = () => setShowAssign(false);
+  const handleAssignShow=()=>setShowAssign(true)
+  
+  
 
   return (
     <div className="container p-5">
@@ -20,7 +25,7 @@ const Trainee = () => {
               Add Trainee
             </Button>
             {"  "}
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="primary" onClick={handleAssignShow}>
               Assign Course
             </Button>
           </div>
@@ -36,7 +41,9 @@ const Trainee = () => {
             <Modal.Title>Add trainee</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <AddTrainee />
+            <AddTrainee 
+            
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
@@ -49,18 +56,20 @@ const Trainee = () => {
         </Modal>
 
           {/* Assign Course Modal */}
-          <Modal show={show} onHide={handleClose}>
+          <Modal show={showAssign} onHide={handleAssignClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Add trainee</Modal.Title>
+            <Modal.Title>Assign Course</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <AssignTraineeCourse />
+            <AssignTraineeCourse 
+            
+            />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={handleAssignClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={handleAssignClose}>
               Save Changes
             </Button>
           </Modal.Footer>

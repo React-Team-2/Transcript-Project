@@ -12,6 +12,8 @@ class AddTrainee extends Component {
               <input
                 className="form-control"
                 type="text"
+                value={this.props.firstName}
+                onChange={(e)=>e.target.value}
                 placeholder="Enter FirstName"
               />
             </div>
@@ -22,6 +24,8 @@ class AddTrainee extends Component {
               <input
                 className="form-control"
                 type="text"
+                value={this.props.lastName}
+                onChange={(e)=>e.target.value}
                 placeholder="Enter Lastname"
               />
             </div>
@@ -29,28 +33,30 @@ class AddTrainee extends Component {
         </Row>
 
         <Row className="mb-3">
-          <Col>
+          <Col className="">
             <div>
               <label className="form-label">Email</label>
               <input
                 className="form-control"
                 type="text"
+                value={this.props.email}
+                onChange={(e)=>e.target.value}
                 placeholder="Enter email"
               />
             </div>
           </Col>
-          <Col>
-            <div>
+        </Row>
+        <Row className="mb-3">
+          <Col>  
               <label className="form-label">Track</label>
-              <select className="form-select">
+              <select className="form-control" onChange={(e)=>e.target.value}>
                 <option>Foundation</option>
                 <option>Media & Design</option>
                 <option>Software Development & Evolution</option>
                 <option>Machine Learning & Data Analytics</option>
                 <option>Salesforce Commerce Cloud Development</option>
               </select>
-            </div>
-          </Col>
+            </Col>
         </Row>
       
       </form>

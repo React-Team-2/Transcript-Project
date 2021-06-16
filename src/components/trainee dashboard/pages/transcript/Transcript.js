@@ -40,9 +40,9 @@ class transcript extends Component {
           <thead className="table-light">
             <tr>
               <th>#</th>
-              <th>Course Title</th>
               <th>Course Code</th>
-              <th>Date Enrolled</th>
+              <th>Course Title</th>
+              <th>Score</th>
             </tr>
           </thead>
           <tbody>

@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 // import "./index.css"
 import App from './App';
 import {createStore,combineReducers, applyMiddleware, compose} from 'redux';
-// import thunk from 'redux-thunk';
+import {composeWithDevTools} from "redux-devtools-extension"
+import thunk from 'redux-thunk';
 import AllCoursesReducer from "./store/reducers/AllCoursesReducer";
 import TraineeTrackReducer from "./store/reducers/TraineeTrackReducer";
 import TranscriptReducer from "./store/reducers/TranscriptReducer";
@@ -23,7 +24,7 @@ const rootReducer = combineReducers({
 })
 
 
-const transcriptStore =createStore(rootReducer)
+const transcriptStore =createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(
     <Provider store={transcriptStore}>

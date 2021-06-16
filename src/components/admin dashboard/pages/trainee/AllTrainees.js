@@ -2,6 +2,9 @@ import React, {useState } from "react";
 import {connect} from "react-redux";
 import {Button, Modal} from "react-bootstrap";
 import axios from "axios";
+import AddTrainee from "./AddTraineeForm";
+import * as actionCreator from "../../../../store/actions/action" 
+
 
 
 const AllTrainees=(props)=>  {
@@ -44,8 +47,8 @@ const AllTrainees=(props)=>  {
     let fetched = props.loading;
     return (
 
-        <div className="row mt-3">
-          <div className="col-12">
+
+          <div className="col-12 mx-auto">
             <span>
               <i className="fas fa-users" />
               <h5>All trainees</h5>
@@ -72,16 +75,37 @@ const AllTrainees=(props)=>  {
                   <td>{trainee.currentTrack}</td>
                   <td>{trainee.date}</td>
                   <td>
-                  <i onClick={handleShow} className="cursor-pointer far fa-edit text-success" />
-                  <i className="far fa-trash-alt text-danger ms-3" />
+                  <button onClick={()=>{handleShow()}} type="button" className="cursor-pointer far fa-edit btn btn-success" />
+                    {" "}
+                  <button type="button" className="far fa-trash-alt btn btn-danger"  />
                   </td>
                 </tr>
               );
             })}
               </tbody>
             </table>
+            <Modal  show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Update Trainee</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-5">
+        <AddTrainee
+           firstName="Victor"
+           lastName="Aremu"
+           email="victor_aremu@amalitech.org"
+        />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
           </div>
-        </div>
+
 
     );
   }
@@ -95,7 +119,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTrainees: (trainees) => dispatch({ type: "UPDATE_TRAINEES", payload:trainees}),
+    getTrainees: dispatch(actionCreator.fetchTrainees())
   };
 };
 
