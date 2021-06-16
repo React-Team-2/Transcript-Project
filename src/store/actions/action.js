@@ -7,7 +7,7 @@ const FETCH_COURSES = "FETCH_COURSES";
 const FETCH_TRACKS ="FETCH_TRACKS";
 const FETCH_TRAINEES="FETCH_TRAINEES"
 const FETCH_REQUEST="FETCH_REQUEST";
-const FETCH_SUCCESS="FETCH_SUCCESS"
+// const FETCH_SUCCESS="FETCH_SUCCESS"
 const FETCH_FAILURE="FETCH_FAILURE";
 const ADD_COURSE="ADD_COURSE";
 const ADD_TRAINEE="ADD_TRAINEE";
@@ -21,16 +21,15 @@ const FETCH_TRAINEE_TRACK="FETCH_TRAINEE_TRACK"
 //action creators
 
 
-
 export const fetchRequest=()=>{
     return{
         type:FETCH_REQUEST
     }
 }
 
-export const fetchSuccess=(courses)=>{
+export const fetchCoursesSuccess=(courses)=>{
     return{
-        type:FETCH_SUCCESS,
+        type:FETCH_COURSES,
         payload:courses
     }
 }
@@ -39,6 +38,30 @@ export const fetchFailure=(error)=>{
     return{
         type:FETCH_FAILURE,
         payload:error
+    }
+}
+export const fetchTraineeSuccess=(trainees)=>{
+    return{
+        type: FETCH_TRAINEES,
+        payload: trainees
+    }
+}
+export const fetchTracksSuccess=(tracks)=>{
+    return{
+        type: FETCH_TRACKS,
+        payload: tracks
+    }
+}
+export const fetchTraineeCourseSuccess=(traineeCourses)=>{
+    return{
+        type: FETCH_TRAINEE_COURSE,
+        payload: traineeCourses
+    }
+}
+export const fetchTraineeTrackSuccess=(traineeTrack)=>{
+    return{
+        type: FETCH_TRAINEE_TRACK,
+        payload: traineeTrack
     }
 }
 
@@ -52,7 +75,7 @@ export const fetchCourses=()=>{
       }}
        axios.get(baseUrl,config).then(res=>{
          const courses=res.data.result
-         dispatch(fetchSuccess(courses))
+         dispatch(fetchCoursesSuccess(courses))
        }).catch(error=>{
           const errMsg = error.message
           dispatch(fetchFailure(errMsg))
@@ -71,8 +94,8 @@ export const fetchTracks=()=>{
            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
        }}
         axios.get(baseUrl,config).then(res=>{
-          const trackss=res.data.result
-          dispatch(fetchSuccess(trackss))
+          const tracks=res.data.result
+          dispatch(fetchTracksSuccess(tracks))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -81,7 +104,7 @@ export const fetchTracks=()=>{
 }
 
 
-export const fetchTrainees=(data)=>{
+export const fetchTrainees=()=>{
     return (dispatch)=>{
         dispatch(fetchRequest)
         const baseUrl="https://amalitech-tms.herokuapp.com"
@@ -91,7 +114,7 @@ export const fetchTrainees=(data)=>{
        }}
         axios.get(baseUrl,config).then(res=>{
           const trainees=res.data.result
-          dispatch(fetchSuccess(trainees))
+          dispatch(fetchTraineeSuccess(trainees))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -111,7 +134,7 @@ export const fetchTraineeCourse=()=>{
        }}
         axios.get(baseUrl,config).then(res=>{
           const courses=res.data.result
-          dispatch(fetchSuccess(courses))
+          dispatch(fetchTraineeCourseSuccess(courses))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -130,7 +153,7 @@ export const fetchTraineeTrack=()=>{
        }}
         axios.get(baseUrl,config).then(res=>{
           const courses=res.data.result
-          dispatch(fetchSuccess(courses))
+          dispatch(fetchTraineeTrackSuccess(courses))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))

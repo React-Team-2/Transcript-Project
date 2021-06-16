@@ -112,8 +112,8 @@ const AllTrainees=(props)=>  {
     
 const mapStateToProps = (state) => {
   return {
-    loading: state.allTrainees.fetched,
-    trainee: state.allTrainees.courses,
+    loading: state.allTrainees.loading,
+    trainee: state.allTrainees.trainees,
   };
 };
 

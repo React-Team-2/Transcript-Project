@@ -27,7 +27,8 @@ const AllTraineesReducer = (state=initialState,action) => {
         case actions.addTrainee:
             return{
                 ...state,
-                newTrainee:state.currentTrainee.concat({})
+                newTrainee:state.trainees.concat(state.currentTrainee)
+                // newTrainee:state.currentTrainee.concat({})
             }
         case actions.fetchFailure:
         return{
