@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../courses/Course.css";
 import axios from "axios";
+import Loader from "../../../../Loader";
+
 
 class track extends Component {
   constructor(props){
@@ -62,9 +64,10 @@ class track extends Component {
       <tbody>
         <tr>
           <td className="text-center" colSpan="10">
-            <div className="spinner-border m-5" role="status">
+            <Loader/>
+            {/* <div className="spinner-border m-5" role="status">
               <span className="visually-hidden"></span>
-            </div>
+            </div> */}
           </td>
         </tr>
       </tbody>

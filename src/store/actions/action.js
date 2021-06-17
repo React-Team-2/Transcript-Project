@@ -1,5 +1,4 @@
 
-import { keys } from "@material-ui/core/styles/createBreakpoints";
 import axios from "axios";
 
 
@@ -163,14 +162,12 @@ export const fetchTraineeTrack=()=>{
 
 
 
-export const addTrainee=()=>{
+export const addTrainee=(trainee)=>{
    return ()=>{
-    const baseUrl="https://amalitech-tms.herokuapp.com"
-    const data=""
-    axios.post(baseUrl,data).then(res=>{
-        res.body.then(res=>{
-            res.data.create()
-        })
+    const url="https://amalitech-tms.herokuapp.com"
+    
+    axios.post(url,{trainee}).then(res=>{
+        console.log(res.body.data)
     }).catch(error=>{
         console.log(error)
     })
