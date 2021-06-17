@@ -24,6 +24,7 @@ const AllTraineesReducer = (state=initialState,action) => {
             }
         case actions.FETCH_TRAINEES:
         return{
+            ...state,
             loading:false,
             trainees:state.trainees.concat(action.payload),
             error:""
