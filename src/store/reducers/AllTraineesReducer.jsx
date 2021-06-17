@@ -4,8 +4,10 @@ const initialState={
     trainees:[],
     currentTrainee:{
         id:"",
-        firstName:"",
-        lastName:"",
+        fName:"",
+        lName:"",
+        currentTrack:"",
+        date:""
 
     }
 }
@@ -27,12 +29,12 @@ const AllTraineesReducer = (state=initialState,action) => {
         case actions.addTrainee:
             return{
                 ...state,
-                newTrainee:state.currentTrainee.concat({})
+                newTrainee:state.trainees.concat(state.currentTrainee)
             }
         case actions.fetchFailure:
         return{
             loading:false,
-            tracks:[],
+            trainees:[],
             error:action.payload
         }
         default: return state

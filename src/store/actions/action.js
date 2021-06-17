@@ -1,5 +1,4 @@
 
-import { keys } from "@material-ui/core/styles/createBreakpoints";
 import axios from "axios";
 
 
@@ -71,8 +70,8 @@ export const fetchTracks=()=>{
            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
        }}
         axios.get(baseUrl,config).then(res=>{
-          const trackss=res.data.result
-          dispatch(fetchSuccess(trackss))
+          const tracks=res.data.result
+          dispatch(fetchSuccess(tracks))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -110,8 +109,8 @@ export const fetchTraineeCourse=()=>{
            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
        }}
         axios.get(baseUrl,config).then(res=>{
-          const courses=res.data.result
-          dispatch(fetchSuccess(courses))
+          const traineeCourses=res.data.result
+          dispatch(fetchSuccess(traineeCourses))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -129,8 +128,8 @@ export const fetchTraineeTrack=()=>{
            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
        }}
         axios.get(baseUrl,config).then(res=>{
-          const courses=res.data.result
-          dispatch(fetchSuccess(courses))
+          const traineeTracks=res.data.result
+          dispatch(fetchSuccess(traineeTracks))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -140,14 +139,12 @@ export const fetchTraineeTrack=()=>{
 
 
 
-export const addTrainee=()=>{
+export const addTrainee=(trainee)=>{
    return ()=>{
-    const baseUrl="https://amalitech-tms.herokuapp.com"
-    const data=""
-    axios.post(baseUrl,data).then(res=>{
-        res.body.then(res=>{
-            res.data.create()
-        })
+    const url="https://amalitech-tms.herokuapp.com"
+    
+    axios.post(url,{trainee}).then(res=>{
+        console.log(res.body.data)
     }).catch(error=>{
         console.log(error)
     })

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+import * as actionCreator from "../../../../store/actions/action"
 
 class AddTrainee extends Component {
   render() {
@@ -64,4 +66,19 @@ class AddTrainee extends Component {
   }
 }
 
-export default AddTrainee;
+
+const mapStateToProps = (state) => {
+  return {
+    
+    trainee: state.allTrainees.trainees,
+    tracks:state.allTracks.tracks.trackTitle
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTrainee:(trainee)=>dispatch(actionCreator.addTrainee(trainee))
+  };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps) (AddTrainee);
