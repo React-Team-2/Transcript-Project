@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import AddTrainee from "./AddTraineeForm";
@@ -11,77 +11,29 @@ const AllTrainees = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const trainees = [
-    {
-      id: "1",
-      fName: "Victor",
-      lName: "Aremu",
-      currentTrack: "Media & Design",
-      date: "2021-05-28",
-    },
-    {
-      id: "2",
-      fName: "Agbesi",
-      lName: "Amenyo",
-      currentTrack: "Media & Design",
-      date: "2021-05-28",
-    },
-    {
-      id: "3",
-      fName: "Felix",
-      lName: "Portuphy",
-      currentTrack: "Media & Design",
-      date: "2021-05-28",
-    },
-    {
-      id: "4",
-      fName: "Bismark",
-      lName: "Frimpong",
-      currentTrack: "Media & Design",
-      date: "2021-05-28",
-    },
-    {
-      id: "5",
-      fName: "Jefferson",
-      lName: "Addai-Poku",
-      currentTrack: "Salesforce Commerce Cloud Development",
-      date: "2021-05-28",
-    },
-    {
-      id: "6",
-      fName: "Kwabena",
-      lName: "Dwamena",
-      currentTrack: "Salesforce Commerce Cloud Development",
-      date: "2021-05-28",
-    },
-    {
-      id: "7",
-      fName: "Elliot",
-      lName: "Adinortey",
-      currentTrack: "Salesforce Commerce Cloud Development",
-      date: "2021-05-28",
-    },
-    {
-      id: "8",
-      fName: "Amoro",
-      lName: "Bagei",
-      currentTrack: "Salesforce Commerce Cloud Development",
-      date: "2021-05-28",
-    },
-  ];
 
-  let traineeData = props.trainee;
+  let trainees = props.trainee;
   let fetched = props.loading;
+  if(trainees.length < 1) props.fetchTrainees(trainees)
 
-  const loadTrainees=fetched ? (
+
+  const loadTrainees = fetched ? (
+    <tbody>
+      <tr>
+        <td className="text-center" colSpan="10">
+          <Loader />
+        </td>
+      </tr>
+    </tbody>
+  ) : (
     <tbody>
       {trainees.map((trainee) => {
         return (
-          <tr>
+          <tr key={trainee.id}>
             <td>{trainee.id}</td>
-            <td>{trainee.fName}</td>
-            <td>{trainee.lName}</td>
-            <td>{trainee.currentTrack}</td>
+            <td>{trainee.firstname}</td>
+            <td>{trainee.lastname}</td>
+            <td>{trainee.email}</td>
             <td>{trainee.date}</td>
             <td>
               <button
@@ -100,15 +52,6 @@ const AllTrainees = (props) => {
         );
       })}
     </tbody>
-  ) : (
-    <tbody>
-      <tr>
-        <td className="text-center" colSpan="10">
-          <Loader/>
-         
-        </td>
-      </tr>
-    </tbody>
   );
 
   return (
@@ -124,7 +67,7 @@ const AllTrainees = (props) => {
             <th>#</th>
             <th>FirstName</th>
             <th>LastName</th>
-            <th>Current Track</th>
+            <th>Email</th>
             <th>Date Created</th>
             <th>Actions</th>
           </tr>
@@ -136,10 +79,11 @@ const AllTrainees = (props) => {
           <Modal.Title>Update Trainee</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <AddTrainee
-            firstName="Victor"
-            lastName="Aremu"
-            email="victor_aremu@amalitech.org"
+          <AddTrainee key={props.trainee.id}
+            
+            firstName={props.trainee.firstname}
+            lastName={props.trainee.lastname}
+            email={props.trainee.email}
           />
         </Modal.Body>
         <Modal.Footer>
@@ -164,8 +108,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTrainees: (trainees) =>
-      dispatch(actionCreator.fetchTrainees(trainees)),
+    fetchTrainees: (trainees) => dispatch(actionCreator.fetchTrainees(trainees)),
   };
 };
 

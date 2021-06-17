@@ -1,11 +1,13 @@
 import * as actions from "../actions/action"
 const initialState={
     loading:false,
-    trainees:[],
+    trainees:[
+        
+    ],
     currentTrainee:{
         id:"",
-        fName:"",
-        lName:"",
+        firstname:"",
+        lastname:"",
         currentTrack:"",
         date:""
 
@@ -13,26 +15,26 @@ const initialState={
 }
 
 const AllTraineesReducer = (state=initialState,action) => {
-    
+    console.log(action.type)
     switch(action.type){
-        case actions.fetchRequest:
+        case actions.FETCH_REQUEST:
             return{
                ...state,
                loading:true
             }
-        case actions.fetchTrainees:
+        case actions.FETCH_TRAINEES:
         return{
             loading:false,
-            trainees:action.payload,
+            trainees:state.trainees.concat(action.payload),
             error:""
         }
-        case actions.addTrainee:
+        case actions.ADD_TRAINEE:
             return{
                 ...state,
                 newTrainee:state.trainees.concat(state.currentTrainee)
-                // newTrainee:state.currentTrainee.concat({})
+               
             }
-        case actions.fetchFailure:
+        case actions.FETCH_FAILURE:
         return{
             loading:false,
             trainees:[],

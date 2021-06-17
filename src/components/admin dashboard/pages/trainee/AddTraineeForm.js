@@ -1,9 +1,43 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
-import * as actionCreator from "../../../../store/actions/action"
+import * as actionCreator from "../../../../store/actions/action";
 
 class AddTrainee extends Component {
+  constructor(props) {
+    super(props);
+    this.state = [
+      {
+        firstname: " ",
+        lastname: " ",
+        batch_name: " ",
+        password: " ",
+        role_title: " ",
+        email: " ",
+      },
+    ];
+  }
+
+  setFirstName = (e) => {
+    this.setState({firstname:(e.target.value)})
+  };
+  setLastName = (e) => {
+    this.setState({lastname:(e.target.value)})
+  };
+  setEmail = (e) => {
+    this.setState({email:(e.target.value)})
+   
+  };
+  setBatch = (e) => {
+    this.setState({batch_name:(e.target.value)})
+    
+  };
+  setPassword = (e) => {
+    this.setState({password:(e.target.value)})
+  };
+
+  
+
   render() {
     return (
       <form className="form">
@@ -15,7 +49,7 @@ class AddTrainee extends Component {
                 className="form-control"
                 type="text"
                 value={this.props.firstName}
-                onChange={(e)=>e.target.value}
+                onChange={this.setFirstName}
                 placeholder="Enter FirstName"
               />
             </div>
@@ -27,7 +61,7 @@ class AddTrainee extends Component {
                 className="form-control"
                 type="text"
                 value={this.props.lastName}
-                onChange={(e)=>e.target.value}
+                onChange={this.setLastName}
                 placeholder="Enter Lastname"
               />
             </div>
@@ -40,45 +74,45 @@ class AddTrainee extends Component {
               <label className="form-label">Email</label>
               <input
                 className="form-control"
-                type="text"
+                type="email"
                 value={this.props.email}
-                onChange={(e)=>e.target.value}
+                onChange={this.setEmail}
                 placeholder="Enter email"
               />
             </div>
           </Col>
         </Row>
         <Row className="mb-3">
-          <Col>  
-              <label className="form-label">Track</label>
-              <select className="form-control" onChange={(e)=>e.target.value}>
-                <option>Foundation</option>
+          <Col>
+            <label className="form-label">Track</label>
+            <select className="form-control" onChange={(e) => e.target.value}>
+              {/* <option>Foundation</option>
                 <option>Media & Design</option>
                 <option>Software Development & Evolution</option>
                 <option>Machine Learning & Data Analytics</option>
-                <option>Salesforce Commerce Cloud Development</option>
-              </select>
-            </Col>
+                <option>Salesforce Commerce Cloud Development</option> */}
+              {this.props.tracks.map((track) => {
+                return <option>{track.track_name}</option>;
+              })}
+            </select>
+          </Col>
         </Row>
-      
       </form>
     );
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
-    
     trainee: state.allTrainees.trainees,
-    tracks:state.allTracks.tracks.trackTitle
+    tracks: state.allTraineeTracks.tracks,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTrainee:(trainee)=>dispatch(actionCreator.addTrainee(trainee))
+    addTrainee: (trainee) => dispatch(actionCreator.addTrainee(trainee)),
   };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps) (AddTrainee);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTrainee);

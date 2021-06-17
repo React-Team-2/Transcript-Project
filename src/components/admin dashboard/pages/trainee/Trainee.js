@@ -50,7 +50,7 @@ const Trainee = () => {
               Close
             </Button>
             <Button variant="primary" onClick={handleClose}>
-              Save Changes
+              Add Trainee
             </Button>
           </Modal.Footer>
         </Modal>
@@ -70,7 +70,7 @@ const Trainee = () => {
               Close
             </Button>
             <Button variant="primary" onClick={handleAssignClose}>
-              Save Changes
+              Assign Course
             </Button>
           </Modal.Footer>
         </Modal>

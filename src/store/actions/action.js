@@ -1,19 +1,18 @@
 
 import axios from "axios";
 
-
-const FETCH_COURSES = "FETCH_COURSES";
-const FETCH_TRACKS ="FETCH_TRACKS";
-const FETCH_TRAINEES="FETCH_TRAINEES"
-const FETCH_REQUEST="FETCH_REQUEST";
+export const FETCH_COURSES = "FETCH_COURSES";
+export const FETCH_TRACKS ="FETCH_TRACKS";
+export const FETCH_TRAINEES="FETCH_TRAINEES"
+export const FETCH_REQUEST="FETCH_REQUEST";
 // const FETCH_SUCCESS="FETCH_SUCCESS"
-const FETCH_FAILURE="FETCH_FAILURE";
-const ADD_COURSE="ADD_COURSE";
-const ADD_TRAINEE="ADD_TRAINEE";
-const ADD_TRACK="ADD_TRACK";
-const ASSIGN_COURSE="ASSIGN_COURSE"
-const FETCH_TRAINEE_COURSE="FETCH_TRAINEE_COURSE"
-const FETCH_TRAINEE_TRACK="FETCH_TRAINEE_TRACK"
+export const FETCH_FAILURE="FETCH_FAILURE";
+export const ADD_COURSE="ADD_COURSE";
+export const ADD_TRAINEE="ADD_TRAINEE";
+export const ADD_TRACK="ADD_TRACK";
+export const ASSIGN_COURSE="ASSIGN_COURSE"
+export const FETCH_TRAINEE_COURSE="FETCH_TRAINEE_COURSE"
+export const FETCH_TRAINEE_TRACK="FETCH_TRAINEE_TRACK"
 
 
 
@@ -103,17 +102,18 @@ export const fetchTracks=()=>{
 }
 
 
-export const fetchTrainees=()=>{
+export const fetchTrainees=(trainees)=>{
     return (dispatch)=>{
         dispatch(fetchRequest)
-        const baseUrl="https://amalitech-tms.herokuapp.com"
+        const url="https://amalitech-tms.herokuapp.com/users"
         const config={ headers: {
          Authorization:
-           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
+           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiNjY0MmI4YzkyYmQzNWIwOWE1NDc3IiwiaWF0IjoxNjIzOTM3MDU5fQ.dyLUmuRTUOmb8o0tUwhJQFdz4RKUhbM9yhcqQqM851A",
        }}
-        axios.get(baseUrl,config).then(res=>{
+        axios.get(url,config).then(res=>{
           const trainees=res.data.result
           dispatch(fetchTraineeSuccess(trainees))
+         
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -152,7 +152,7 @@ export const fetchTraineeTrack=()=>{
        }}
         axios.get(baseUrl,config).then(res=>{
           const courses=res.data.result
-          dispatch(fetchTraineeTrackSuccess(courses))
+        //   dispatch(fetchTraineeTrackSuccess(courses))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -164,10 +164,9 @@ export const fetchTraineeTrack=()=>{
 
 export const addTrainee=(trainee)=>{
    return ()=>{
-    const url="https://amalitech-tms.herokuapp.com"
+    const url="https://amalitech-tms.herokuapp.com/users"
     
     axios.post(url,{trainee}).then(res=>{
-        console.log(res.body.data)
     }).catch(error=>{
         console.log(error)
     })

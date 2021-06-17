@@ -6,7 +6,6 @@ const AllCourses = (props) =>{
   const [state, setState] = useState({show: false, course: {}, tracks: []});
   if(!state.tracks){
     fetchTracks().then(tracks =>{
-      console.log(tracks)
       setState({...state, tracks: tracks})
     })
   }
