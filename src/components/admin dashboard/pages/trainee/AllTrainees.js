@@ -107,19 +107,12 @@ const AllTrainees = (props) => {
         <Modal.Body className="p-5">
           <AddTrainee key={state.trainee.id}
             
-            firstName={state.trainee.firstname}
-            lastName={state.trainee.lastname}
+            firstname={state.trainee.firstname}
+            lastname={state.trainee.lastname}
             email={state.trainee.email}
+            batch_name={state.trainee.batch_name}
           />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={OnEdit}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );

@@ -101,10 +101,10 @@ export const fetchTracks=()=>{
     }
 }
 
-
-export const fetchTrainees=(trainees)=>{
+export const fetchTrainees=()=>{
     return (dispatch)=>{
         dispatch(fetchRequest)
+        
         const url="https://amalitech-tms.herokuapp.com/users"
         const config={ headers: {
          Authorization:
@@ -113,10 +113,12 @@ export const fetchTrainees=(trainees)=>{
         axios.get(url,config).then(res=>{
           const trainees=res.data.result
           dispatch(fetchTraineeSuccess(trainees))
+                
+      
          
         }).catch(error=>{
            const errMsg = error.message
-           dispatch(fetchFailure(errMsg))
+            dispatch(fetchFailure(errMsg))
         })
     }
 }
@@ -152,7 +154,7 @@ export const fetchTraineeTrack=()=>{
        }}
         axios.get(baseUrl,config).then(res=>{
           const courses=res.data.result
-        //   dispatch(fetchTraineeTrackSuccess(courses))
+          dispatch(fetchTraineeTrackSuccess(courses))
         }).catch(error=>{
            const errMsg = error.message
            dispatch(fetchFailure(errMsg))
@@ -163,12 +165,20 @@ export const fetchTraineeTrack=()=>{
 
 
 export const addTrainee=(trainee)=>{
+    console.log(trainee);
    return ()=>{
     const url="https://amalitech-tms.herokuapp.com/users"
+    const config={ headers: {
+        Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiNjY0MmI4YzkyYmQzNWIwOWE1NDc3IiwiaWF0IjoxNjIzOTM3MDU5fQ.dyLUmuRTUOmb8o0tUwhJQFdz4RKUhbM9yhcqQqM851A",
+      }}
     
-    axios.post(url,{trainee}).then(res=>{
+    axios.post(url, trainee,config).then(res=>{
+        console.log(res.data)
+     
     }).catch(error=>{
-        console.log(error)
+        if(error) console.log(error.response.data)
+
     })
    }
 }
@@ -207,6 +217,7 @@ export const update=()=>{
 
 export const delItem=()=>{
     
+  
       
 }
 

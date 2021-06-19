@@ -1,41 +1,75 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col,Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as actionCreator from "../../../../store/actions/action";
 
 class AddTrainee extends Component {
   constructor(props) {
     super(props);
-    this.state = [
-      {
+    this.state = {
         firstname: " ",
         lastname: " ",
+        email: " ",
         batch_name: " ",
         password: " ",
         role_title: " ",
-        email: " ",
-      },
-    ];
+        trainees:[],
+      }
+    
+      
   }
 
-  setFirstName = (e) => {
-    this.setState({firstname:(e.target.value)})
-  };
-  setLastName = (e) => {
-    this.setState({lastname:(e.target.value)})
-  };
-  setEmail = (e) => {
-    this.setState({email:(e.target.value)})
-   
-  };
-  setBatch = (e) => {
-    this.setState({batch_name:(e.target.value)})
-    
-  };
-  setPassword = (e) => {
-    this.setState({password:(e.target.value)})
-  };
 
+  
+   handleValueChange=(e)=>{
+     const fieldName=e.target.name;
+     switch(fieldName){
+       case "firstname":
+         this.setState({firstname:e.target.value})
+         break;
+       case "lastname":
+          this.setState({lastname:e.target.value})
+          break;
+       case "email":
+          this.setState({email:e.target.value})
+          break;
+        case "batch_name":
+          this.setState({batch_name:e.target.value})
+          break;
+          case "password":
+            this.setState({password:e.target.value})
+            break;
+            
+     }
+   }
+
+
+   handleSave=(e)=>{
+      e.preventDefault()
+      let newTrainee={
+        firstname:this.state.firstname,
+        lastname:this.state.lastname,
+        email:this.state.email,
+        batch_name:this.state.batch_name,
+        password: this.state.password,
+        role: "user",
+      
+      }
+      let traineeObj=[...this.state.trainees,newTrainee]
+      this.setState({trainees:traineeObj},()=>{
+        // console.log("New Trainee: ",...this.state.trainees)
+        this.setState({
+          firstname: " ",
+          lastname: " ",
+          email: " ",
+          batch_name: " ",
+          password: " ",
+
+        })
+      })
+      this.props.addTrainee(newTrainee)
+      
+   }
   
 
   render() {
@@ -48,8 +82,9 @@ class AddTrainee extends Component {
               <input
                 className="form-control"
                 type="text"
-                defaultValue={this.props.firstName}
-                onChange={this.setFirstName}
+                name="firstname"
+                defaultValue={this.props.firstname}
+                onChange={this.handleValueChange}
                 placeholder="Enter FirstName"
               />
             </div>
@@ -60,8 +95,9 @@ class AddTrainee extends Component {
               <input
                 className="form-control"
                 type="text"
-                defaultValue={this.props.lastName}
-                onChange={this.setLastName}
+                name="lastname"
+                defaultValue={this.props.lastname}
+                onChange={this.handleValueChange}
                 placeholder="Enter Lastname"
               />
             </div>
@@ -75,8 +111,9 @@ class AddTrainee extends Component {
               <input
                 className="form-control"
                 type="email"
+                name="email"
                 defaultValue={this.props.email}
-                // onChange={(e)=>setEmail(e.target.value)}
+                onChange={this.handleValueChange}
                 placeholder="Enter email"
               />
             </div>
@@ -84,17 +121,48 @@ class AddTrainee extends Component {
         </Row>
         <Row className="mb-3">
           <Col>
+            <div>
+              <label className="form-label">Batch Name</label>
+              <input
+                className="form-control"
+                type="text"
+                name="batch_name"
+                defaultValue= {this.props.batch_name}
+                onChange={this.handleValueChange}
+                placeholder="Enter Batch Name"
+              />
+            </div>
+          </Col>
+          <Col>
+            <div>
+              <label className="form-label">Password</label>
+              <input
+                className="form-control"
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleValueChange}
+                placeholder="Enter Password"
+              />
+            </div>
+          </Col>
+        </Row>
+        {/* <Row className="mb-3">
+          <Col>
             <label className="form-label">Track</label>
-            <select className="form-control" onChange={(e) => e.target.value}>
-              {/* <option>Foundation</option>
-                <option>Media & Design</option>
-                <option>Software Development & Evolution</option>
-                <option>Machine Learning & Data Analytics</option>
-                <option>Salesforce Commerce Cloud Development</option> */}
+            <select className="form-control" >
               {this.props.tracks.map((track) => {
                 return <option>{track.track_name}</option>;
               })}
             </select>
+          </Col>
+        </Row> */}
+        <Row className="mb-3">
+          <Col><Button onClick={this.props.closeButton}>Close</Button></Col>
+          <Col>
+          <Button type="submit" className=" btn btn-success" onClick={this.handleSave}>
+            Add
+          </Button>
           </Col>
         </Row>
       </form>
