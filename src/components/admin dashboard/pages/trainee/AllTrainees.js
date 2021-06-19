@@ -6,11 +6,37 @@ import * as actionCreator from "../../../../store/actions/action";
 import Loader from "../../../../Loader";
 
 const AllTrainees = (props) => {
-  const [show, setShow] = useState(false);
+  const [state, setState] = useState({show:false, trainee: {}});
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setState({show:false, trainee: {}});
+  const handleShow = (trainee) => setState({show: true, trainee: trainee});
 
+  const getRecord = (id) =>{
+    // const findTrainee = trainees.find(trainee => trainee.id === id );
+    // return findTrainee;
+  }
+
+  const OnEdit = () => {
+    // // console.log(trainees)
+    // const tempTrainee = trainees;
+    // const index = tempTrainee.indexOf(getRecord(id));
+    // const selectedTrainee = tempTrainee[index];
+
+    // const [id, setId] = useState(selectedTrainee['id']);
+    // const [email, setEmail] = useState(selectedTrainee['email']);
+    // const [firstname, setFirstName] = useState(selectedTrainee['firstname']);
+    // const [lastname, setLastName] = useState(selectedTrainee['lastname']);
+    
+    const data = {
+      firstname: state.trainee.firstname,
+      lastname: state.trainee.lastname,
+      email: state.trainee.email,
+      track: state.trainee.track
+    }
+    console.log(data)
+
+
+  }
 
   let trainees = props.trainee;
   let fetched = props.loading;
@@ -38,7 +64,7 @@ const AllTrainees = (props) => {
             <td>
               <button
                 onClick={() => {
-                  handleShow();
+                  handleShow(trainee);
                 }}
                 type="button"
                 className="cursor-pointer far fa-edit btn btn-success"
@@ -74,23 +100,23 @@ const AllTrainees = (props) => {
         </thead>
         {loadTrainees}
       </table>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={state.show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Update Trainee</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <AddTrainee key={props.trainee.id}
+          <AddTrainee key={state.trainee.id}
             
-            firstName={props.trainee.firstname}
-            lastName={props.trainee.lastname}
-            email={props.trainee.email}
+            firstName={state.trainee.firstname}
+            lastName={state.trainee.lastname}
+            email={state.trainee.email}
           />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={OnEdit}>
             Save Changes
           </Button>
         </Modal.Footer>

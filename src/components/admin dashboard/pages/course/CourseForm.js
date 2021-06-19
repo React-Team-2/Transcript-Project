@@ -22,7 +22,7 @@ class CourseForm extends Component {
               <div className="col">
                 <label className="form-label">Course</label>
                 <input
-                  value={this.props.courseTitle}
+                  defaultValue={this.props.courseTitle}
                   className="form-control"
                   type="text"
                   placeholder="Course Title"
@@ -33,7 +33,7 @@ class CourseForm extends Component {
               <div className="col">
                 <label className="form-label">Code</label>
                 <input
-                  value={this.props.courseCode}
+                  defaultValue={this.props.courseCode}
                   className="form-control"
                   type="text"
                   placeholder="Course Code"

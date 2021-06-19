@@ -48,7 +48,7 @@ class AddTrainee extends Component {
               <input
                 className="form-control"
                 type="text"
-                value={this.props.firstName}
+                defaultValue={this.props.firstName}
                 onChange={this.setFirstName}
                 placeholder="Enter FirstName"
               />
@@ -60,7 +60,7 @@ class AddTrainee extends Component {
               <input
                 className="form-control"
                 type="text"
-                value={this.props.lastName}
+                defaultValue={this.props.lastName}
                 onChange={this.setLastName}
                 placeholder="Enter Lastname"
               />
@@ -75,8 +75,8 @@ class AddTrainee extends Component {
               <input
                 className="form-control"
                 type="email"
-                value={this.props.email}
-                onChange={this.setEmail}
+                defaultValue={this.props.email}
+                // onChange={(e)=>setEmail(e.target.value)}
                 placeholder="Enter email"
               />
             </div>
