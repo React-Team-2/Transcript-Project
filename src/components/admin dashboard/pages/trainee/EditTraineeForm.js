@@ -143,7 +143,7 @@ class AddTrainee extends Component {
                 className="form-control"
                 type="password"
                 name="password"
-                value={this.state.password}
+                defaultValue={this.state.password}
                 onChange={this.handleValueChange}
                 placeholder="Enter Password"
               />

@@ -336,3 +336,23 @@ export const delCourse = (id) => {
     }
 }
 
+export const updateTrack = (track) => {
+    console.log(track)
+    return () => {
+        const url = `https://amalitech-tms.herokuapp.com/tracks/${track.id}`
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`           
+               }
+        }
+        const newTrack = {
+            track_name: track.track_name,
+            track_master: track.track_master,
+        }
+        axios.put(url, newTrack, config).then(res => {
+            console.log(res.data)
+        }).catch(error => {
+            if (error) console.log(error.response.data)
+        })
+    }
+}

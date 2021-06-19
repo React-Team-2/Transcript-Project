@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import AddTrack from "./AddTrackForm";
 import * as actionCreator from "../../../../store/actions/action";
-
+import EditTrackForm from "./EditTrackForm";
 const AllTracks = (props) => {
   const [state, setState] = useState({ show: false, track: {} });
-  const handleClose = () => setState({ show: false, tracks: {} });
-  const handleShow = (tracks) => setState({ show: true, tracks: tracks });
+  const handleClose = () => setState({ show: false, track: {} });
+  const handleShow = (track) => setState({ show: true, track: track });
 
   const handleDelete = (id) => {
     console.log(id);
     props.delTrack(id);
-    setTimeout(()=>{window.location.reload()}, 1000)
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   async function fetchTracks() {
@@ -63,7 +65,7 @@ const AllTracks = (props) => {
                 <td> {track.track_master} </td> <td> {track.date_created} </td>
                 <td>
                   <button
-                    onClick={() => handleShow()}
+                    onClick={() => handleShow(track)}
                     type="button"
                     className="cursor-pointer far fa-edit btn btn-success"
                   />
@@ -83,16 +85,14 @@ const AllTracks = (props) => {
           <Modal.Title> Update Track </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <AddTrack trackName="Media & Design" trackMaster="Emmanuel Asaber" />
+          <EditTrackForm
+          closeButton={handleClose}
+            key={state.track._id}
+            id={state.track._id}
+            track_name={state.track.track_name}
+            track_master={state.track.track_master}
+          />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );
