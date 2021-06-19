@@ -4,14 +4,14 @@ const initialState={
     trainees:[
         
     ],
-    currentTrainee:{
-        id:"",
-        firstname:"",
-        lastname:"",
-        currentTrack:"",
-        date:""
+    // currentTrainee:{
+    //     id:"",
+    //     firstname:"",
+    //     lastname:"",
+    //     currentTrack:"",
+    //     date:""
 
-    }
+    // }
 }
 
 const AllTraineesReducer = (state=initialState,action) => {

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import CourseForm from "./CourseForm";
 import {Button, Modal} from "react-bootstrap";
+import * as actionCreator from "../../../../store/actions/action";
 import axios from "axios";
+import { connect } from "react-redux";
+
+
+
 const AllCourses = (props) =>{
   const [state, setState] = useState({show: false, course: {}, tracks: []});
   if(!state.tracks){
@@ -12,8 +17,12 @@ const AllCourses = (props) =>{
   const handleClose = () => setState({...state, show: false});
   const handleShow = (course) => setState({show: true, course: course});
 
+  const handleDelete = (id) => {
+    console.log(id);
+    props.delCourse(id);
+    setTimeout(()=>{window.location.reload()}, 1000)
+  };
 
- 
   const [showConfirmModal ,setShowConfirmModal]=useState(false);
   const handleConfirmClose = () => setShowConfirmModal(false);
   const handleConfirmShow=()=>setShowConfirmModal(true)
@@ -30,8 +39,8 @@ const AllCourses = (props) =>{
           <thead className="table-light">
             <tr>
               <th>#</th>
-              <th>Course Title</th>
-              <th>Course Code</th>
+              <th>Course Name</th>
+              <th>Course Master</th>
               <th>Date Created</th>
               <th>Actions</th>
             </tr>
@@ -43,13 +52,13 @@ const AllCourses = (props) =>{
                 <tr key={course._id}>
                   <td>{index}</td>
                   <td>{course.course_name}</td>
-                  <td>{course._id}</td>
+                  <td>{course.course_master}</td>
                   <td>{course.date_created}</td>
                   <td className>
                     <button onClick={() => handleShow({course_name: course.course_name, _id: course._id})}
                     type="button" className="cursor-pointer far fa-edit btn btn-success" />
                     {" "}
-                    <button onClick={()=>handleConfirmShow()} type="button" className="far fa-trash-alt btn btn-danger"/>
+                    <button onClick={() => handleDelete(course._id)} type="button" className="far fa-trash-alt btn btn-danger"/>
                   </td>
                 </tr>
               );
@@ -121,6 +130,15 @@ const AllCourses = (props) =>{
 
     return trackData;
   }
-
-
-export default AllCourses;
+  const mapStateToProps = (state) => {
+    return {
+      course: state.allCourses.courses,
+      tracks: state.allTraineeTracks.tracks,
+    };
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      delCourse: (id) => dispatch(actionCreator.delCourse(id)),
+    };
+  };
+  export default connect(mapStateToProps, mapDispatchToProps)(AllCourses);

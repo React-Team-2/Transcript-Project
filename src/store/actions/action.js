@@ -282,3 +282,57 @@ export const addTracks = (track) => {
         })
     }
 }
+
+export const delTrack = (id) => {
+    return () => {
+        const url = `https://amalitech-tms.herokuapp.com/tracks/${id}`
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`           
+                     }
+        }
+        axios.delete(url, config).then(res => {
+            console.log(res.data)
+        }).catch(error => {
+            if (error) console.log(error.response.data)
+        })
+    }
+}
+
+export const addCourses = (course) => {
+    console.log(course);
+    return () => {
+        const url = "https://amalitech-tms.herokuapp.com/courses"
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`           
+
+            }
+        }
+
+        axios.post(url, course, config).then(res => {
+            console.log(res.data)
+
+        }).catch(error => {
+            if (error) console.log(error.response.data)
+
+        })
+    }
+}
+
+export const delCourse = (id) => {
+    return () => {
+        const url = `https://amalitech-tms.herokuapp.com/courses/${id}`
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`           
+                     }
+        }
+        axios.delete(url, config).then(res => {
+            console.log(res.data)
+        }).catch(error => {
+            if (error) console.log(error.response.data)
+        })
+    }
+}
+
