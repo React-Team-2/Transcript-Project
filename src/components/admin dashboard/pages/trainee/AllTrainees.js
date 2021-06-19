@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
-import AddTrainee from "./AddTraineeForm";
+import EditTraineeForm from "./EditTraineeForm";
 import * as actionCreator from "../../../../store/actions/action";
 import Loader from "../../../../Loader";
 
@@ -11,31 +11,9 @@ const AllTrainees = (props) => {
   const handleClose = () => setState({show:false, trainee: {}});
   const handleShow = (trainee) => setState({show: true, trainee: trainee});
 
-  const getRecord = (id) =>{
-    // const findTrainee = trainees.find(trainee => trainee.id === id );
-    // return findTrainee;
-  }
 
-  const OnEdit = () => {
-    // // console.log(trainees)
-    // const tempTrainee = trainees;
-    // const index = tempTrainee.indexOf(getRecord(id));
-    // const selectedTrainee = tempTrainee[index];
-
-    // const [id, setId] = useState(selectedTrainee['id']);
-    // const [email, setEmail] = useState(selectedTrainee['email']);
-    // const [firstname, setFirstName] = useState(selectedTrainee['firstname']);
-    // const [lastname, setLastName] = useState(selectedTrainee['lastname']);
-    
-    const data = {
-      firstname: state.trainee.firstname,
-      lastname: state.trainee.lastname,
-      email: state.trainee.email,
-      track: state.trainee.track
-    }
-    console.log(data)
-
-
+  const handleDelete = (id) => {
+    props.delTrainee(id);
   }
 
   let trainees = props.trainee;
@@ -70,6 +48,9 @@ const AllTrainees = (props) => {
                 className="cursor-pointer far fa-edit btn btn-success"
               />{" "}
               <button
+              onClick={()=>
+                handleDelete(trainee._id)
+              }
                 type="button"
                 className="far fa-trash-alt btn btn-danger"
               />
@@ -105,8 +86,8 @@ const AllTrainees = (props) => {
           <Modal.Title>Update Trainee</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <AddTrainee key={state.trainee.id}
-            
+          <EditTraineeForm key={state.trainee.id}
+            id={state.trainee._id}
             firstname={state.trainee.firstname}
             lastname={state.trainee.lastname}
             email={state.trainee.email}
@@ -128,6 +109,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchTrainees: (trainees) => dispatch(actionCreator.fetchTrainees(trainees)),
+    delTrainee: (id) => dispatch(actionCreator.delTrainee(id)),
   };
 };
 
