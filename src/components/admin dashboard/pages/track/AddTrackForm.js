@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import {Row,Col} from "react-bootstrap";
+import * as actionCreator from "../../../../store/actions/action";
+import {connect} from 'react-redux'
 
 class AddTrack extends Component {
   render() {
@@ -35,5 +37,17 @@ class AddTrack extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    loading: state.allTraineeTracks.fetched,
+    tracks: state.allTraineeTracks.tracks,
+  };
+};
 
-export default AddTrack;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTracks: (track) => dispatch(actionCreator.addTracks(track))
+  };
+};
+export default connect(mapStateToProps,mapDispatchToProps) (AddTrack);
+

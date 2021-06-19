@@ -14,6 +14,7 @@ const AllTrainees = (props) => {
 
   const handleDelete = (id) => {
     props.delTrainee(id);
+    setTimeout(()=>{window.location.reload()}, 1000)
   }
 
   let trainees = props.trainee;
@@ -38,7 +39,7 @@ const AllTrainees = (props) => {
             <td>{trainee.firstname}</td>
             <td>{trainee.lastname}</td>
             <td>{trainee.email}</td>
-            <td>{trainee.date}</td>
+            <td>{trainee.date_created}</td>
             <td>
               <button
                 onClick={() => {
@@ -87,11 +88,12 @@ const AllTrainees = (props) => {
         </Modal.Header>
         <Modal.Body className="p-5">
           <EditTraineeForm key={state.trainee.id}
+            closeButton={handleClose}
             id={state.trainee._id}
             firstname={state.trainee.firstname}
             lastname={state.trainee.lastname}
             email={state.trainee.email}
-            batch_name={state.trainee.batch_name}
+            batch={state.trainee.batch}
           />
         </Modal.Body>
       </Modal>

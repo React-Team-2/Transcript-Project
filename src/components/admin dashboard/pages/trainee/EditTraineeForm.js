@@ -11,7 +11,7 @@ class AddTrainee extends Component {
         firstname: this.props.firstname,
         lastname: this.props.lastname,
         email: this.props.email,
-        batch_name: this.props.batch_name,
+        batch_name: this.props.batch,
         password: this.props.password,
         role_title: this.props.role_title,
         trainees:[],
@@ -130,7 +130,7 @@ class AddTrainee extends Component {
                 className="form-control"
                 type="text"
                 name="batch_name"
-                defaultValue= {this.props.batch_name}
+                defaultValue= {this.props.batch.batch_name}
                 onChange={this.handleValueChange}
                 placeholder="Enter Batch Name"
               />

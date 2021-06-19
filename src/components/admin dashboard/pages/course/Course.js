@@ -23,8 +23,7 @@ const Course = (props) => {
       "https://amalitech-tms.herokuapp.com/courses",
       {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiNjY0MmI4YzkyYmQzNWIwOWE1NDc3IiwiaWF0IjoxNjIzMjc3MTE4fQ.2lzxEW-YTQebHMTBZPMDghoaoTQWNUJ2OrzfjYfMhpg",
+          Authorization: `Bearer ${localStorage.token}`           
         },
       }
     );

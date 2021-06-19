@@ -68,7 +68,7 @@ class AddTrainee extends Component {
         })
       })
       this.props.addTrainee(newTrainee)
-      
+      setTimeout(()=>{window.location.reload()}, 1000)
    }
   
 

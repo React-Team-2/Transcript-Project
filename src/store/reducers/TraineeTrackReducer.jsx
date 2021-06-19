@@ -1,3 +1,5 @@
+import * as actions from "../actions/action"
+
 const initialState={
     loading:false,
     tracks:[],
@@ -13,6 +15,11 @@ const AllTraineeTracksReducer = (state={tracks:[], fetched:false}, action) => {
                tracks: action.payload,
                fetched:true
            }
+        case actions.ADD_TRACK:
+            return {
+                ...state.tracks,
+                tracks: action.payload,
+            }
           
 
         default: return state

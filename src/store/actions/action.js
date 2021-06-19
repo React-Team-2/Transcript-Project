@@ -65,14 +65,16 @@ export const fetchTraineeTrackSuccess = (traineeTrack) => {
 export const fetchCourses = () => {
     return (dispatch) => {
         dispatch(fetchRequest)
-        const baseUrl = "https://amalitech-tms.herokuapp.com"
+        const baseUrl = "https://amalitech-tms.herokuapp.com/courses"
         const config = {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
-            }
+                Authorization: `Bearer ${localStorage.token}`          
+              }
         }
+        console.log("created")
         axios.get(baseUrl, config).then(res => {
             const courses = res.data.result
+            console.log(courses)
             dispatch(fetchCoursesSuccess(courses))
         }).catch(error => {
             const errMsg = error.message
@@ -89,7 +91,7 @@ export const fetchTracks = () => {
         const baseUrl = "https://amalitech-tms.herokuapp.com"
         const config = {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
+                Authorization: `Bearer ${localStorage.token}`           
             }
         }
         axios.get(baseUrl, config).then(res => {
@@ -109,8 +111,8 @@ export const fetchTrainees = () => {
         const url = "https://amalitech-tms.herokuapp.com/users"
         const config = {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiNjY0MmI4YzkyYmQzNWIwOWE1NDc3IiwiaWF0IjoxNjIzOTM3MDU5fQ.dyLUmuRTUOmb8o0tUwhJQFdz4RKUhbM9yhcqQqM851A",
-            }
+                Authorization: `Bearer ${localStorage.token}`           
+                   }
         }
         axios.get(url, config).then(res => {
             const trainees = res.data.result
@@ -133,8 +135,8 @@ export const fetchTraineeCourse = () => {
         const baseUrl = "https://amalitech-tms.herokuapp.com"
         const config = {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
-            }
+                Authorization: `Bearer ${localStorage.token}`           
+                }
         }
         axios.get(baseUrl, config).then(res => {
             const courses = res.data.result
@@ -153,8 +155,8 @@ export const fetchTraineeTrack = () => {
         const baseUrl = "https://amalitech-tms.herokuapp.com"
         const config = {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
-            }
+                Authorization: `Bearer ${localStorage.token}`           
+                 }
         }
         axios.get(baseUrl, config).then(res => {
             const courses = res.data.result
@@ -174,8 +176,8 @@ export const addTrainee = (trainee) => {
         const url = "https://amalitech-tms.herokuapp.com/users"
         const config = {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiNjY0MmI4YzkyYmQzNWIwOWE1NDc3IiwiaWF0IjoxNjIzOTM3MDU5fQ.dyLUmuRTUOmb8o0tUwhJQFdz4RKUhbM9yhcqQqM851A",
-            }
+                Authorization: `Bearer ${localStorage.token}`           
+                   }
         }
 
         axios.post(url, trainee, config).then(res => {
@@ -222,8 +224,8 @@ export const updateTrainee = (trainee) => {
         const url = `https://amalitech-tms.herokuapp.com/users/${trainee.id}`
         const config = {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiNjY0MmI4YzkyYmQzNWIwOWE1NDc3IiwiaWF0IjoxNjIzOTM3MDU5fQ.dyLUmuRTUOmb8o0tUwhJQFdz4RKUhbM9yhcqQqM851A",
-            }
+                Authorization: `Bearer ${localStorage.token}`           
+               }
         }
         const newTrainee = {
             firstname: trainee.firstname,
@@ -248,14 +250,35 @@ export const delTrainee = (id) => {
         const url = `https://amalitech-tms.herokuapp.com/users/${id}`
         const config = {
             headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiNjY0MmI4YzkyYmQzNWIwOWE1NDc3IiwiaWF0IjoxNjIzOTM3MDU5fQ.dyLUmuRTUOmb8o0tUwhJQFdz4RKUhbM9yhcqQqM851A",
-            }
+                Authorization: `Bearer ${localStorage.token}`           
+                     }
         }
         console.log(url)
         axios.delete(url, config).then(res => {
             console.log(res.data)
         }).catch(error => {
             if (error) console.log(error.response.data)
+        })
+    }
+}
+
+export const addTracks = (track) => {
+    console.log(track);
+    return () => {
+        const url = "https://amalitech-tms.herokuapp.com/tracks"
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`           
+
+            }
+        }
+
+        axios.post(url, track, config).then(res => {
+            console.log(res.data)
+
+        }).catch(error => {
+            if (error) console.log(error.response.data)
+
         })
     }
 }

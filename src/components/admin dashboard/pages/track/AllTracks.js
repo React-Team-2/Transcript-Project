@@ -3,6 +3,9 @@ import {connect} from "react-redux";
 import {Button, Modal} from "react-bootstrap";
 import axios from "axios";
 import AddTrack from "./AddTrackForm";
+import * as actionCreator from "../../../../store/actions/action";
+
+
 
 const  AllTracks=(props)=> {
 
@@ -108,6 +111,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTracks: (tracks) => dispatch({ type: "UPDATE_TRACKS", payload: tracks}),
+    addTracks: (track) => dispatch(actionCreator.addTracks),
   };
 };
 export default connect(mapStateToProps,mapDispatchToProps) (AllTracks);
