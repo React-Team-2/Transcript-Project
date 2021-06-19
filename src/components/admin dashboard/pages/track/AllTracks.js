@@ -16,16 +16,15 @@ const  AllTracks=(props)=> {
 
   async function fetchTracks() {
     const fetchedTracks = await axios.get(
-      "https://amalitech-tms.herokuapp.com/tracks?user=60ba4ef1303e0f1b04b7a26c",
+      "https://amalitech-tms.herokuapp.com/tracks",
       {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
+          Authorization: `Bearer ${localStorage.token}`           
         },
       }
     );
     const trackData = fetchedTracks.data.result;
-   
+   console.log (trackData)
         
     trackData.map((track) => {
       const date = new Date(track.enrollment_date);
@@ -34,8 +33,7 @@ const  AllTracks=(props)=> {
     });
     props.getTracks(trackData);
   }
-   fetchTracks()
-
+  if(props.tracks.length < 1) fetchTracks()
 
     let trackData = props.tracks;
     let fetched = props.loading;
@@ -65,7 +63,7 @@ const  AllTracks=(props)=> {
                   <td>{index}</td>
                   <td>{track.track_name}</td>
                   <td>{track.track_master}</td>
-                  <td>{track.enrollment_date}</td>
+                  <td>{track.date_created}</td>
                   <td>
                   <button onClick={() => handleShow()}
                     type="button" className="cursor-pointer far fa-edit btn btn-success" />
