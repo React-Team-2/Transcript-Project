@@ -131,7 +131,7 @@ export const fetchTrainees = () => {
 export const fetchTraineeCourse = () => {
     return (dispatch) => {
         dispatch(fetchRequest)
-        const baseUrl = "https://amalitech-tms.herokuapp.com"
+        const baseUrl = "https://amalitech-tms.herokuapp.com/courses"
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           
@@ -151,15 +151,15 @@ export const fetchTraineeCourse = () => {
 export const fetchTraineeTrack = () => {
     return (dispatch) => {
         dispatch(fetchRequest)
-        const baseUrl = "https://amalitech-tms.herokuapp.com"
+        const baseUrl = "https://amalitech-tms.herokuapp.com/tracks"
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           
                  }
         }
         axios.get(baseUrl, config).then(res => {
-            const courses = res.data.result
-            dispatch(fetchTraineeTrackSuccess(courses))
+            const tracks = res.data.result
+            dispatch(fetchTraineeTrackSuccess(tracks))
         }).catch(error => {
             const errMsg = error.message
             dispatch(fetchFailure(errMsg))
