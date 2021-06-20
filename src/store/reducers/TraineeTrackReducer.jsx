@@ -5,15 +5,15 @@ const initialState={
     tracks:[],
     error:""
 }
-const AllTraineeTracksReducer = (state={tracks:[], fetched:false}, action) => {
+const AllTraineeTracksReducer = (state=initialState, action) => {
     
 
     switch(action.type){
-        case "UPDATE_TRACKS":
+        case actions.FETCH_TRACKS:
            return {
             ...state.tracks,
                tracks: action.payload,
-               fetched:true
+               loading:true
            }
         case actions.ADD_TRACK:
             return {

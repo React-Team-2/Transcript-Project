@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import Chart from "../../charts/Chart";
 import "./Analytics.css";
+import {connect} from "react-redux";
+import * as actionCreator from "../../../../store/actions/action";
 // import Chart from "../../charts/Chart";
 
 class Analytics extends Component {
+  constructor(props){
+    super(props);
+  }
+  componentDidMount(){
+    this.props.fetchTrainees()
+    this.props.fetchTracks()
+  }
   render() {
     return (
       <div>
@@ -11,46 +20,34 @@ class Analytics extends Component {
           {/* <!-- MAIN CARDS STARTS HERE --> */}
           <div className="main__anCards">
             <div className="anCard">
-              <i
-                className="fa fa-user-o fa-2x text-lightblue"
-                aria-hidden="true"
-              ></i>
+             
               <div className="anCard_inner">
                 <p className="text-primary-p">Total Number of Trainees</p>
-                <span className="font-bold text-title">578</span>
+                <span className="font-bold text-title">{this.props.trainees.length}</span>
               </div>
             </div>
 
             <div className="anCard">
-              <i
-                className="fa fa-calendar fa-2x text-red"
-                aria-hidden="true"
-              ></i>
+             
               <div className="anCard_inner">
                 <p className="text-primary-p">Courses Available</p>
-                <span className="font-bold text-title">2467</span>
+                <span className="font-bold text-title">{this.props.courses.length}</span>
               </div>
             </div>
 
             <div className="anCard">
-              <i
-                className="fa fa-video-camera fa-2x text-yellow"
-                aria-hidden="true"
-              ></i>
+             
               <div className="anCard_inner">
                 <p className="text-primary-p">Courses Enrolled</p>
-                <span className="font-bold text-title">340</span>
+                <span className="font-bold text-title">{this.props.courses.length}</span>
               </div>
             </div>
 
             <div className="anCard">
-              <i
-                className="fa fa-thumbs-up fa-2x text-green"
-                aria-hidden="true"
-              ></i>
+            
               <div className="anCard_inner">
-                <p className="text-primary-p">Number</p>
-                <span className="font-bold text-title">645</span>
+                <p className="text-primary-p">Tracks</p>
+                <span className="font-bold text-title">{this.props.tracks.length}</span>
               </div>
             </div>
           </div>
@@ -108,4 +105,19 @@ class Analytics extends Component {
   }
 }
 
-export default Analytics;
+const mapStateToProps = (state) => {
+  return {
+    trainees: state.allTrainees.trainees,
+    courses: state.allCourses.courses,
+    tracks: state.allTraineeTracks.tracks,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchTrainees: (trainees) => dispatch(actionCreator.fetchTrainees(trainees)),
+    fetchTracks: () => dispatch(actionCreator.fetchTracks())
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Analytics);
+
+

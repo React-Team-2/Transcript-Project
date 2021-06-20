@@ -87,8 +87,7 @@ export const fetchCourses = () => {
 
 export const fetchTracks = () => {
     return (dispatch) => {
-        dispatch(fetchRequest)
-        const baseUrl = "https://amalitech-tms.herokuapp.com"
+        const baseUrl = "https://amalitech-tms.herokuapp.com/tracks"
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           

@@ -18,26 +18,27 @@ const AllTracks = (props) => {
     }, 1000);
   };
 
-  async function fetchTracks() {
-    const fetchedTracks = await axios.get(
-      "https://amalitech-tms.herokuapp.com/tracks",
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      }
-    );
-    const trackData = fetchedTracks.data.result;
-    console.log(trackData);
+  // async function fetchTracks() {
+  //   const fetchedTracks = await axios.get(
+  //     "https://amalitech-tms.herokuapp.com/tracks",
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.token}`,
+  //       },
+  //     }
+  //   );
+  //   const trackData = fetchedTracks.data.result;
+  //   console.log(trackData);
 
-    trackData.map((track) => {
-      const date = new Date(track.enrollment_date);
-      track.enrollment_date = date.toLocaleDateString();
-      return {};
-    });
-    props.getTracks(trackData);
-  }
-  if (props.tracks.length < 1) fetchTracks();
+  //   trackData.map((track) => {
+  //     const date = new Date(track.enrollment_date);
+  //     track.enrollment_date = date.toLocaleDateString();
+  //     return {};
+  //   });
+  //   props.getTracks(trackData);
+  // }
+  
+  if (props.tracks.length < 1) props.fetchTracks();
 
   let trackData = props.tracks;
   let fetched = props.loading;
@@ -107,13 +108,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTracks: (tracks) =>
-      dispatch({
-        type: "UPDATE_TRACKS",
-        payload: tracks,
-      }),
     // addTracks: (track) => dispatch(actionCreator.addTracks),
     delTrack: (id) => dispatch(actionCreator.delTrack(id)),
+    fetchTracks:()=>dispatch(actionCreator.fetchTracks())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AllTracks);
