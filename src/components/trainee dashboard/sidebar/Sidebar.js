@@ -37,7 +37,7 @@ const Sidebar = (props) => {
 
       <div className="sidebar__menu">
         <div className="sidebar_avatar">
-          <img src="" alt="" />
+          <img src="./assets/images/vic.jpg" alt="" />
           <h5>{props.user ? props.user.firstname : "username"}</h5>
         </div>
         <div className="sidebar__link active_menu_link">
