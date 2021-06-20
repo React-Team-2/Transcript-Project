@@ -16,20 +16,22 @@
   /* color: #E85B6B; */
 }
 
-.sidebar__img {
-  display: flex;
-  align-items: center;
+.logoTms{
+  text-align: center ;
+  margin: auto;
+  font-size: 2rem;
+  color: #333;
 }
 
-.sidebar_avatar{
+.sidebar_avatar2{
   text-align: center;
 }
 
-.sidebar_avatar img{
-  width:60px;
-  height:60px;
+.sidebar_avatar2 img{
+  width:80px;
+  height:80px;
   border-radius:50%;
-  border:1px solid black;
+  object-fit: cover;
 }
 
 .sidebar__title > div > img {

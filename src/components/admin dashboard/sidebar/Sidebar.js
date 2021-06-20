@@ -19,10 +19,7 @@ let history = useHistory();
   return (
     <div className={sidebarOpen ? "sidebar_responsive" : ""} id="sidebar">
       <div className="sidebar__title">
-        <div className="sidebar__img">
-          <img src='/assets/logo.png' alt="logo" />
-          <h1>TMS</h1>
-        </div>
+          <h1 className="logoTms">TMS</h1>
         <i
           onClick={() => closeSidebar()}
           className="fa fa-times"
@@ -32,9 +29,9 @@ let history = useHistory();
       </div>
 
       <div className="sidebar__menu">
-        <div className="sidebar_avatar">
-           <img src="" alt=""/>
-           <h5>UserName</h5>
+        <div className="sidebar_avatar2">
+           <img src="/assets/images/fel.jpg" alt=""/>
+           <h5>Admin</h5>
         </div>
          
         <div className="sidebar__link active_menu_link">

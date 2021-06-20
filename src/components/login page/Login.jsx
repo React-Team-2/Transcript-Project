@@ -31,11 +31,13 @@ const Login = (props) => {
       })
       .then((response) => {
         const { data } = response;
+        console.log(data)
         if (response.status === 200) {
           const token = data.token;
           const roleTitle = data.role.role_title;
           localStorage.setItem('token', token);
           localStorage.setItem('roleTitle', roleTitle);
+          // localStorage.setItem('UserName', )
 
             if(roleTitle === 'admin'){
               Auth.login(()=>{
