@@ -4,21 +4,22 @@ import { connect } from "react-redux";
 import * as actionCreator from "../../../../store/actions/action";
 
 
-class AssignTraineeCourse extends Component {
+class AssignTraineeTrack extends Component {
   constructor(props) {
     super(props);
     this.state = {
         id: this.props.trainees[0]._id,
         trainee:this.props.trainees[0],
-        course:this.props.courses[0],
+        track:this.props.tracks[0],
       }
+    
+      
   }
 
 
   
    handleValueChange=(e)=>{
      const fieldName=e.target.name;
-     console.log(e.target.name);
      switch(fieldName){
        case "trainee_name":
          this.setState({trainee:e.target.value})
@@ -26,6 +27,10 @@ class AssignTraineeCourse extends Component {
        case "course":
           this.setState({course:e.target.value})
           break;
+       case "track":
+          this.setState({track:e.target.value})
+          break;
+            
      }
    }
 
@@ -35,9 +40,9 @@ class AssignTraineeCourse extends Component {
       let newAssign={
         id: this.state.id,
         trainee:this.state.trainee,
-        course:this.state.course,
+        track:this.state.track,
       }
-      this.props.assignCourse(newAssign);
+      this.props.assignTrack(newAssign);
       setTimeout(()=>{window.location.reload()}, 1000)
       
    }
@@ -47,7 +52,7 @@ class AssignTraineeCourse extends Component {
         <Row className="mb-3">
           <Col>
             <label className="form-label">Trainee Name</label>
-            <select name="trainee_name" className="form-control">
+            <select className="form-control">
               {this.props.trainees.map(trainee =>{
                 return(
                   <option>{trainee.firstname +" "+ trainee.lastname}</option>
@@ -55,16 +60,16 @@ class AssignTraineeCourse extends Component {
               })}
             </select>
           </Col>
-          <Col>
+          {/* <Col>
             <label className="form-label">Course</label>
-            <select name="course" className="form-control">
+            <select className="form-control">
             {this.props.courses.map(course => {
               return(
                 <option>{course.course_name}</option>
               )
             })}
             </select>
-          </Col>
+          </Col> */}
         </Row>
 
         <Row className="mb-3">
@@ -78,7 +83,7 @@ class AssignTraineeCourse extends Component {
               placeholder="Course Code"
             />
           </Col>
-          {/* <Col>
+          <Col>
             <div>
               <label className="form-label">Track</label>
               <select className="form-control">
@@ -89,13 +94,13 @@ class AssignTraineeCourse extends Component {
               })}
               </select>
             </div>
-          </Col> */}
+          </Col>
         </Row>
         <Button variant="secondary" onClick={this.props.closeButton}>
               Close
             </Button>
         <Button variant="primary" onClick={this.handleSave}>
-              Assign Course  
+              Assign Track  
         </Button>
       </form>
     );
@@ -105,7 +110,9 @@ class AssignTraineeCourse extends Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.allTrainees.loading,
-
+    trainees: state.allTrainees.trainees,
+    courses: state.allCourses.courses,
+    tracks: state.allTraineeTracks.tracks
   };
 };
 
@@ -115,10 +122,9 @@ const mapDispatchToProps = (dispatch) => {
     delTrainee: (id) => dispatch(actionCreator.delTrainee(id)),
     fetchCourses: () => dispatch(actionCreator.fetchCourses()),
     fetchTracks: ()=> dispatch(actionCreator.fetchTracks()),
-    assignCourse: (newAssign) => dispatch(actionCreator.AssignCourse(newAssign)),
-    assignTrack: () => dispatch(actionCreator.AssignTrack())
+    assignTrack: (newAssign) => dispatch(actionCreator.AssignTrack(newAssign))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AssignTraineeCourse);
+export default connect(mapStateToProps, mapDispatchToProps)(AssignTraineeTrack);
 

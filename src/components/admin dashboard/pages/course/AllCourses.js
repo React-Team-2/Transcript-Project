@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseForm";
 import {Button, Modal} from "react-bootstrap";
 import * as actionCreator from "../../../../store/actions/action";
@@ -14,6 +14,10 @@ const AllCourses = (props) =>{
       setState({...state, tracks: tracks})
     })
   }
+
+  useEffect(() =>{
+    props.fetchCourses();
+  }, [])
   const handleClose = () => setState({...state, show: false});
   const handleShow = (course) => setState({show: true, course: course});
 
@@ -27,7 +31,6 @@ const AllCourses = (props) =>{
   const handleConfirmClose = () => setShowConfirmModal(false);
   const handleConfirmShow=()=>setShowConfirmModal(true)
 
-  if (props.course.length < 1) props.fetchCourses();
     return (
       <div className="mt-3">
         <div className="col-12">

@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
@@ -10,6 +10,9 @@ const AllTracks = (props) => {
   const handleClose = () => setState({ show: false, track: {} });
   const handleShow = (track) => setState({ show: true, track: track });
 
+  useEffect(() =>{
+    props.fetchTracks();
+  }, [])
   const handleDelete = (id) => {
     console.log(id);
     props.delTrack(id);
@@ -38,7 +41,6 @@ const AllTracks = (props) => {
   //   props.getTracks(trackData);
   // }
   
-  if (props.tracks.length < 1) props.fetchTracks();
 
   let trackData = props.tracks;
   let fetched = props.loading;

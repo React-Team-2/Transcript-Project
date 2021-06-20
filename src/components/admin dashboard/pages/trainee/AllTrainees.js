@@ -8,6 +8,10 @@ import Loader from "../../../../Loader";
 const AllTrainees = (props) => {
   const [state, setState] = useState({show:false, trainee: {}});
 
+  useEffect(() =>{
+    props.fetchTrainees(trainees)
+  }, [])
+
   const handleClose = () => setState({show:false, trainee: {}});
   const handleShow = (trainee) => setState({show: true, trainee: trainee});
 
@@ -19,8 +23,6 @@ const AllTrainees = (props) => {
 
   let trainees = props.trainee;
   let fetched = props.loading;
-  if(trainees.length < 1) props.fetchTrainees(trainees)
-
 
   const loadTrainees = fetched ? (
     <tbody>
@@ -93,7 +95,7 @@ const AllTrainees = (props) => {
             firstname={state.trainee.firstname}
             lastname={state.trainee.lastname}
             email={state.trainee.email}
-            batch={state.trainee.batch}
+            batch={state.trainee.batch ? state.trainee.batch : ""}
           />
         </Modal.Body>
       </Modal>
