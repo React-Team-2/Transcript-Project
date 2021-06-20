@@ -357,7 +357,7 @@ export const updateTrack = (track) => {
 }
 export const AssignCourse =(trainee, course)=>{
     return()=>{
-        const url = `https://amalitech-tms.herokuapp.com/courses/${course.id}`
+        const url = `https://amalitech-tms.herokuapp.com/courses/${course.id}?enroll${trainee.id}`
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           
@@ -375,13 +375,13 @@ export const AssignCourse =(trainee, course)=>{
 }
 export const AssignTrack = (trainee, track)=>{
     return()=>{
-        const url = `https://amalitech-tms.herokuapp.com/tracks/${track.id}`
+        const url = `https://amalitech-tms.herokuapp.com/tracks/${track.id}?enroll=${trainee.id}`
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           
                }
         }
-        axios.put(url, course, config).then(res => {
+        axios.put(url, track, config).then(res => {
             console.log(res.data)
 
         }).catch(error => {
