@@ -12,6 +12,7 @@ class Analytics extends Component {
   componentDidMount(){
     this.props.fetchTrainees()
     this.props.fetchTracks()
+    this.props.fetchCourses()
   }
   render() {
     return (
@@ -114,8 +115,9 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTrainees: (trainees) => dispatch(actionCreator.fetchTrainees(trainees)),
-    fetchTracks: () => dispatch(actionCreator.fetchTracks())
+    fetchTrainees: () => dispatch(actionCreator.fetchTrainees()),
+    fetchTracks: () => dispatch(actionCreator.fetchTracks()),
+    fetchCourses: () => dispatch(actionCreator.fetchCourses())
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Analytics);

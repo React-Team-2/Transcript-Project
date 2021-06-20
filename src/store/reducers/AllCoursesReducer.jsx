@@ -5,15 +5,15 @@ const initialState={
     error:""
 }
 
-const AllCoursesReducer = (state={courses:[], fetched:false}, action) => {
+const AllCoursesReducer = (state=initialState, action) => {
     
 
     switch(action.type){
-        case "UPDATE_COURSES":
+        case actions.FETCH_COURSES:
            return {
             ...state.courses,
                courses: action.payload,
-               fetched:true
+               loading:true
            }
         case actions.addCourse:
             return{

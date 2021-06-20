@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 const AllCourses = (props) =>{
   const [state, setState] = useState({show: false, course: {}, tracks: []});
   if(!state.tracks){
-    fetchTracks().then(tracks =>{
+    props.fetchTracks().then(tracks =>{
       setState({...state, tracks: tracks})
     })
   }
@@ -27,6 +27,7 @@ const AllCourses = (props) =>{
   const handleConfirmClose = () => setShowConfirmModal(false);
   const handleConfirmShow=()=>setShowConfirmModal(true)
 
+  if (props.course.length < 1) props.fetchCourses();
     return (
       <div className="mt-3">
         <div className="col-12">
@@ -111,25 +112,25 @@ const AllCourses = (props) =>{
     );
   }
 
- async function fetchTracks() {
-    const fetchedTracks = await axios.get(
-      "https://amalitech-tms.herokuapp.com/tracks",
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`           
-        },
-      }
-    );
-    const trackData = fetchedTracks.data.result;
+//  async function fetchTracks() {
+//     const fetchedTracks = await axios.get(
+//       "https://amalitech-tms.herokuapp.com/tracks",
+//       {
+//         headers: {
+//           Authorization: `Bearer ${localStorage.token}`           
+//         },
+//       }
+//     );
+//     const trackData = fetchedTracks.data.result;
         
-    trackData.map((track) => {
-      const date = new Date(track.enrollment_date);
-      track.enrollment_date = date.toLocaleDateString();
-      return {}
-    });
+//     trackData.map((track) => {
+//       const date = new Date(track.enrollment_date);
+//       track.enrollment_date = date.toLocaleDateString();
+//       return {}
+//     });
 
-    return trackData;
-  }
+//     return trackData;
+//   }
   const mapStateToProps = (state) => {
     return {
       course: state.allCourses.courses,
@@ -139,6 +140,8 @@ const AllCourses = (props) =>{
   const mapDispatchToProps = (dispatch) => {
     return {
       delCourse: (id) => dispatch(actionCreator.delCourse(id)),
+      fetchCourses: () => dispatch(actionCreator.fetchCourses()),
+      fetchTracks:()=>dispatch(actionCreator.fetchTracks())
     };
   };
   export default connect(mapStateToProps, mapDispatchToProps)(AllCourses);
