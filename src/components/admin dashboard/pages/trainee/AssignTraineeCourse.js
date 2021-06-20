@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+import * as actionCreator from "../../../../store/actions/action";
+
 
 class AssignTraineeCourse extends Component {
+  constructor(props){
+    super(props)
+  }
   render() {
     return (
       <form className="form">
@@ -9,22 +15,21 @@ class AssignTraineeCourse extends Component {
           <Col>
             <label className="form-label">Trainee Name</label>
             <select className="form-control">
-              <option>Victor Aremu</option>
-              <option>Agbesi Amenyo</option>
-              <option>Bismark Frimpong</option>
-              <option>Kwabena Dwamena</option>
-              <option>Jefferson Addai-Poku</option>
+              {this.props.trainees.map(trainee =>{
+                return(
+                  <option>{trainee.firstname +" "+ trainee.lastname}</option>
+                )
+              })}
             </select>
           </Col>
           <Col>
             <label className="form-label">Course</label>
             <select className="form-control">
-              <option></option>
-              <option>Programming with Java</option>
-              <option>Creative Media</option>
-              <option>ReactJs</option>
-              <option>Testing With Cypress</option>
-              <option>Programming with Python</option>
+            {this.props.courses.map(course => {
+              return(
+                <option>{course.course_name}</option>
+              )
+            })}
             </select>
           </Col>
         </Row>
@@ -58,4 +63,21 @@ class AssignTraineeCourse extends Component {
   }
 }
 
+// const mapStateToProps = (state) => {
+//   return {
+//     loading: state.allTrainees.loading,
+//     trainee: state.allTrainees.trainees,
+//     courses: state.allCourses.courses,
+
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchTrainees: (trainees) => dispatch(actionCreator.fetchTrainees(trainees)),
+//     delTrainee: (id) => dispatch(actionCreator.delTrainee(id)),
+//   };
+// };
+
 export default AssignTraineeCourse;
+

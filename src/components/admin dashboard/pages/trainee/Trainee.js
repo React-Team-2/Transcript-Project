@@ -4,8 +4,10 @@ import AddTrainee from "./AddTraineeForm";
 import AllTrainees from "./AllTrainees";
 import AssignTraineeCourse from "./AssignTraineeCourse";
 import { Modal, Button, Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+import * as actionCreator from "../../../../store/actions/action";    
 
-const Trainee = () => {
+const Trainee = (props) => {
   
   const [show, setShow] = useState(false);
   const [showAssign ,setShowAssign]=useState(false);
@@ -14,7 +16,7 @@ const Trainee = () => {
   const handleAssignClose = () => setShowAssign(false);
   const handleAssignShow=()=>setShowAssign(true)
   
-  
+  console.log(props.trainees)
 
   return (
     <div className="container p-5">
@@ -57,12 +59,14 @@ const Trainee = () => {
 
           {/* Assign Course Modal */}
           <Modal show={showAssign} onHide={handleAssignClose}>
+          
           <Modal.Header closeButton>
             <Modal.Title>Assign Course</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <AssignTraineeCourse 
-            
+            trainees = {props.trainees}
+            courses = {props.courses}
             />
           </Modal.Body>
           <Modal.Footer>
@@ -78,5 +82,21 @@ const Trainee = () => {
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    loading: state.allTrainees.loading,
+    trainees: state.allTrainees.trainees,
+    courses: state.allCourses.courses,
 
-export default Trainee;
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchTrainees: (trainees) => dispatch(actionCreator.fetchTrainees(trainees)),
+    delTrainee: (id) => dispatch(actionCreator.delTrainee(id)),
+    fetchCourses: ()
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Trainee);
