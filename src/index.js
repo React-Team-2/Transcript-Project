@@ -10,16 +10,16 @@ import AllCoursesReducer from "./store/reducers/AllCoursesReducer";
 import TraineeTrackReducer from "./store/reducers/TraineeTrackReducer";
 import TranscriptReducer from "./store/reducers/TranscriptReducer";
 import AllTraineesReducer from "./store/reducers/AllTraineesReducer"
-import loginReducer from './store/reducers/loginReducer';
 import aboutReducer from './store/reducers/aboutReducer';
-import {sessionReducer } from "redux-react-session";
+import TraineeReducer from './store/reducers/TraineeReducer';
 
 const rootReducer = combineReducers({
     as: aboutReducer,
     allCourses:AllCoursesReducer,
     allTraineeTracks:TraineeTrackReducer,
     transcript:TranscriptReducer,
-    allTrainees:AllTraineesReducer
+    allTrainees:AllTraineesReducer,
+    user:TraineeReducer
     // session: sessionReducer,
 })
 

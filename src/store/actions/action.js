@@ -12,6 +12,7 @@ export const ADD_TRACK = "ADD_TRACK";
 export const ASSIGN_COURSE = "ASSIGN_COURSE"
 export const FETCH_TRAINEE_COURSE = "FETCH_TRAINEE_COURSE"
 export const FETCH_TRAINEE_TRACK = "FETCH_TRAINEE_TRACK"
+export const FETCH_USER_DETAILS= "FETCH_USER_DETAILS"
 
 
 
@@ -59,6 +60,13 @@ export const fetchTraineeTrackSuccess = (traineeTrack) => {
     return {
         type: FETCH_TRAINEE_TRACK,
         payload: traineeTrack
+    }
+}
+
+export const getUserDetail = (user) => {
+    return {
+        type: FETCH_USER_DETAILS,
+        payload:user
     }
 }
 
@@ -390,3 +398,29 @@ export const AssignTrack = (trainee, track)=>{
         })
     }
 }
+
+
+
+
+export const getUserDetails = (user) => {
+
+    return (dispatch) => {
+        
+        const baseUrl = `https://amalitech-tms.herokuapp.com/users/${user}`
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`           
+            }
+        }
+
+        axios.get(baseUrl, config).then(res => {
+            const userData= res.data.result
+             dispatch(getUserDetail(userData))
+           
+        }).catch(error => {
+            if(error) console.log(error)
+        })
+    }
+}
+
+

@@ -1,11 +1,22 @@
 import "./Sidebar.css";
 import { Button } from "react-bootstrap";
 import {useHistory} from 'react-router-dom';
-import Auth from '../../../Auth'
+import {useEffect} from "react";
+import * as actionCreator from "../../../store/actions/action";
+import Auth from '../../../Auth';
+import {connect} from "react-redux";
 // import logo from '../../../../public/assets/logo.png'
 
-const Sidebar = ({ sidebarOpen, closeSidebar }) => {
+const Sidebar = (props) => {
+  useEffect(() =>{
+    props.getUserDetails(localStorage.getItem('userId'));
+  }, [])
+
+  let sidebarOpen = props.sidebarOpen;
+  let closeSidebar = props.closeSidebar;
   let history = useHistory();
+
+
 
   const handleLogout = () => {
     Auth.logOut(()=>{
@@ -30,7 +41,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
       <div className="sidebar__menu">
         <div className="sidebar_avatar">
           <img src="" alt="" />
-          <h5>UserName</h5>
+          <h5>{props.user ? props.user.firstname : "username"}</h5>
         </div>
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-home"></i>
@@ -71,5 +82,17 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    course: state.allCourses.courses,
+    tracks: state.allTraineeTracks.tracks,
+    user:state.user.user
 
-export default Sidebar;
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUserDetails:(user)=>dispatch(actionCreator.getUserDetails(user))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
