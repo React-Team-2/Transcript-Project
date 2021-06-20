@@ -39,8 +39,8 @@ class Analytics extends Component {
             <div className="anCard">
              
               <div className="anCard_inner">
-                <p className="text-primary-p">Courses Enrolled</p>
-                <span className="font-bold text-title">{this.props.courses.length}</span>
+                <p className="text-primary-p">Batches</p>
+                <span className="font-bold text-title">{3}</span>
               </div>
             </div>
 

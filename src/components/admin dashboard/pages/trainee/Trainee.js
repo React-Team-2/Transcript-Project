@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import "../trainee/Trainee.css";
 import AddTrainee from "./AddTraineeForm";
 import AllTrainees from "./AllTrainees";
@@ -16,7 +16,10 @@ const Trainee = (props) => {
   const handleAssignClose = () => setShowAssign(false);
   const handleAssignShow=()=>setShowAssign(true)
   
-  console.log(props.trainees)
+  useEffect(() =>{
+    props.fetchCourses();
+    props.fetchTracks();
+  })
 
   return (
     <div className="container p-5">
@@ -28,7 +31,7 @@ const Trainee = (props) => {
             </Button>
             {"  "}
             <Button variant="primary" onClick={handleAssignShow}>
-              Assign Course
+              Assign Course / Track
             </Button>
           </div>
         </Col>
@@ -61,12 +64,13 @@ const Trainee = (props) => {
           <Modal show={showAssign} onHide={handleAssignClose}>
           
           <Modal.Header closeButton>
-            <Modal.Title>Assign Course</Modal.Title>
+            <Modal.Title>Assign </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <AssignTraineeCourse 
             trainees = {props.trainees}
             courses = {props.courses}
+            tracks = {props.tracks}
             />
           </Modal.Body>
           <Modal.Footer>
@@ -74,7 +78,7 @@ const Trainee = (props) => {
               Close
             </Button>
             <Button variant="primary" onClick={handleAssignClose}>
-              Assign Course
+              Assign
             </Button>
           </Modal.Footer>
         </Modal>
@@ -87,15 +91,16 @@ const mapStateToProps = (state) => {
     loading: state.allTrainees.loading,
     trainees: state.allTrainees.trainees,
     courses: state.allCourses.courses,
-
+    tracks: state.allTraineeTracks.tracks
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTrainees: (trainees) => dispatch(actionCreator.fetchTrainees(trainees)),
+    fetchTrainees: () => dispatch(actionCreator.fetchTrainees()),
     delTrainee: (id) => dispatch(actionCreator.delTrainee(id)),
-    fetchCourses: ()
+    fetchCourses: () => dispatch(actionCreator.fetchCourses()),
+    fetchTracks: ()=> dispatch(actionCreator.fetchTracks()),
   };
 };
 

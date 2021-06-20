@@ -355,3 +355,38 @@ export const updateTrack = (track) => {
         })
     }
 }
+export const AssignCourse =(trainee, course)=>{
+    return()=>{
+        const url = `https://amalitech-tms.herokuapp.com/courses/${course.id}`
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`           
+               }
+        }
+        
+        axios.put(url, course, config).then(res => {
+            console.log(res.data)
+
+        }).catch(error => {
+            if (error) console.log(error.response.data)
+
+        })
+    }
+}
+export const AssignTrack = (trainee, track)=>{
+    return()=>{
+        const url = `https://amalitech-tms.herokuapp.com/tracks/${track.id}`
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`           
+               }
+        }
+        axios.put(url, course, config).then(res => {
+            console.log(res.data)
+
+        }).catch(error => {
+            if (error) console.log(error.response.data)
+
+        })
+    }
+}

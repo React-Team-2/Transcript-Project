@@ -49,11 +49,11 @@ class AssignTraineeCourse extends Component {
             <div>
               <label className="form-label">Track</label>
               <select className="form-control">
-                <option>Foundation</option>
-                <option>Media & Design</option>
-                <option>Software Development & Evolution </option>
-                <option>Machine Learning & Data Analytics</option>
-                <option>Salesforce Commerce Cloud Development</option>
+              {this.props.tracks.map(track=>{
+                return(
+                  <option>{track.track_name}</option>
+                )
+              })}
               </select>
             </div>
           </Col>
