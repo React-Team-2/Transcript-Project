@@ -5,9 +5,65 @@ import * as actionCreator from "../../../../store/actions/action";
 
 
 class AssignTraineeCourse extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
+    this.state = {
+        id: this.props.id,
+        trainees:[],
+        course:this.props.course,
+        track_name:this.props.track,
+        course_name: " ",
+        course_master: " ",
+        track: this.props.tracks,
+      }
+    
+      
   }
+
+
+  
+   handleValueChange=(e)=>{
+     const fieldName=e.target.name;
+     switch(fieldName){
+       case "trainee_name":
+         this.setState({trainee:e.target.value})
+         break;
+       case "course":
+          this.setState({course:e.target.value})
+          break;
+       case "track":
+          this.setState({track:e.target.value})
+          break;
+            
+     }
+   }
+
+
+   handleSave=(e)=>{
+      e.preventDefault()
+      let newAssign={
+        id: this.state.id,
+        trainee:this.state.trainee,
+        course:this.state.course,
+        track:this.state.track,
+      
+      }
+      let traineeObj=[...this.state.trainees,newAssign]
+      this.setState({trainees:traineeObj},()=>{
+        // console.log("New Trainee: ",...this.state.trainees)
+        // this.setState({
+        //   firstname: " ",
+        //   lastname: " ",
+        //   email: " ",
+        //   batch_name: " ",
+        //   password: " ",
+
+        // })
+      })
+      this.props.updateTrainee(newAssign)
+      setTimeout(()=>{window.location.reload()}, 1000)
+      
+   }
   render() {
     return (
       <form className="form">
@@ -63,21 +119,23 @@ class AssignTraineeCourse extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     loading: state.allTrainees.loading,
-//     trainee: state.allTrainees.trainees,
-//     courses: state.allCourses.courses,
+const mapStateToProps = (state) => {
+  return {
+    loading: state.allTrainees.loading,
+    trainees: state.allTrainees.trainees,
+    courses: state.allCourses.courses,
+    tracks: state.allTraineeTracks.tracks
+  };
+};
 
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchTrainees: () => dispatch(actionCreator.fetchTrainees()),
+    delTrainee: (id) => dispatch(actionCreator.delTrainee(id)),
+    fetchCourses: () => dispatch(actionCreator.fetchCourses()),
+    fetchTracks: ()=> dispatch(actionCreator.fetchTracks()),
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetchTrainees: (trainees) => dispatch(actionCreator.fetchTrainees(trainees)),
-//     delTrainee: (id) => dispatch(actionCreator.delTrainee(id)),
-//   };
-// };
-
-export default AssignTraineeCourse;
+export default connect(mapStateToProps, mapDispatchToProps)(AssignTraineeCourse);
 
