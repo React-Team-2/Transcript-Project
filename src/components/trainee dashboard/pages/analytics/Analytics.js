@@ -11,6 +11,7 @@ class Analytics extends Component {
   componentDidMount() {
     this.props.fetchTracks();
     this.props.fetchCourses();
+    this.props.getUserDetails(localStorage.getItem('userId'));
   }
   render() {
     return (
@@ -21,7 +22,7 @@ class Analytics extends Component {
           <div className="main__title">
             <img src="/assets/hello.svg" alt="hello" />
             <div className="main__greeting">
-              <h1>Hello Trainee</h1>
+              <h1>Hello {this.props.user ? this.props.user.firstname : "Trainee"}</h1>
               <p>Welcome to your dashboard</p>
             </div>
           </div>
@@ -71,12 +72,14 @@ const mapStateToProps = (state) => {
   return {
     courses: state.allCourses.courses,
     tracks: state.allTraineeTracks.tracks,
+    user:state.user.user
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchTracks: () => dispatch(actionCreator.fetchTracks()),
     fetchCourses: () => dispatch(actionCreator.fetchCourses()),
+    getUserDetails:(user)=>dispatch(actionCreator.getUserDetails(user))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Analytics);
