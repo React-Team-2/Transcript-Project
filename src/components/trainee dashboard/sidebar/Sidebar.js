@@ -26,10 +26,7 @@ const Sidebar = (props) => {
   return (
     <div className={sidebarOpen ? "sidebar_responsive" : ""} id="sidebar">
       <div className="sidebar__title">
-        <div className="sidebar__img">
-          {/* <img src={logo} alt="logo" /> */}
           <h1>TMS</h1>
-        </div>
         <i
           onClick={() => closeSidebar()}
           className="fa fa-times"

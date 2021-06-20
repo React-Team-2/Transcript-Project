@@ -79,10 +79,8 @@ export const fetchCourses = () => {
                 Authorization: `Bearer ${localStorage.token}`          
               }
         }
-        console.log("created")
         axios.get(baseUrl, config).then(res => {
             const courses = res.data.result
-            console.log(courses)
             dispatch(fetchCoursesSuccess(courses))
         }).catch(error => {
             const errMsg = error.message
@@ -363,16 +361,17 @@ export const updateTrack = (track) => {
         })
     }
 }
-export const AssignCourse =(trainee, course)=>{
+export const AssignCourse =(newAssign)=>{
+    console.log(newAssign);
     return()=>{
-        const url = `https://amalitech-tms.herokuapp.com/courses/${course.id}?enroll${trainee.id}`
+        const url = `https://amalitech-tms.herokuapp.com/courses/${newAssign.course._id}?enroll=${newAssign.trainee._id}`
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           
                }
         }
         
-        axios.put(url, course, config).then(res => {
+        axios.put(url, newAssign.course, config).then(res => {
             console.log(res.data)
 
         }).catch(error => {
@@ -381,15 +380,15 @@ export const AssignCourse =(trainee, course)=>{
         })
     }
 }
-export const AssignTrack = (trainee, track)=>{
+export const AssignTrack = (newAssign)=>{
     return()=>{
-        const url = `https://amalitech-tms.herokuapp.com/tracks/${track.id}?enroll=${trainee.id}`
+        const url = `https://amalitech-tms.herokuapp.com/tracks/${newAssign.track._id}?enroll=${newAssign.trainee._id}`
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           
                }
         }
-        axios.put(url, track, config).then(res => {
+        axios.put(url, newAssign.track, config).then(res => {
             console.log(res.data)
 
         }).catch(error => {

@@ -29,10 +29,10 @@
 }
 
 .sidebar_avatar img{
-  width:60px;
-  height:60px;
+  width:80px;
+  height:80px;
   border-radius:50%;
-  border:1px solid black;
+  object-fit: cover;
 }
 
 .sidebar__title > div > img {
@@ -48,6 +48,12 @@
 .sidebar__title > i {
   font-size: 18px;
   display: none;
+}
+.sidebar__title h1{
+  text-align: center;
+  margin: auto;
+  font: 2rem;
+  color: #333;
 }
 
 .sidebar__menu > h2 {

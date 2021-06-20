@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import "../trainee/Trainee.css";
+import "../trainee/Trainee.css";
 import AddTrainee from "./AddTraineeForm";
 import AllTrainees from "./AllTrainees";
 import AssignTraineeCourse from "./AssignTraineeCourse";
+import AssignTraineeTrack from "./AssignTraineeTrack";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as actionCreator from "../../../../store/actions/action";    
@@ -11,15 +12,20 @@ const Trainee = (props) => {
   
   const [show, setShow] = useState(false);
   const [showAssign ,setShowAssign]=useState(false);
+  const [showAssigned ,setShowAssigned]=useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleAssignClose = () => setShowAssign(false);
   const handleAssignShow=()=>setShowAssign(true)
+  const handleAssignShow2=()=>setShowAssigned(true)
+  const handleAssignedClose = () => setShowAssigned(false);
+
+
   
   useEffect(() =>{
     props.fetchCourses();
     props.fetchTracks();
-  })
+  }, [])
 
   return (
     <div className="container p-5">
@@ -29,9 +35,11 @@ const Trainee = (props) => {
             <Button variant="primary" onClick={handleShow}>
               Add Trainee
             </Button>
-            {"  "}
             <Button variant="primary" onClick={handleAssignShow}>
-              Assign Course / Track
+              Assign Course
+            </Button>
+            <Button variant="primary" onClick={handleAssignShow2}>
+              Assign Track
             </Button>
           </div>
         </Col>
@@ -50,37 +58,33 @@ const Trainee = (props) => {
               closeButton = {handleClose}
              />
           </Modal.Body>
-          {/* <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Add Trainee
-            </Button>
-          </Modal.Footer> */}
         </Modal>
-
-          {/* Assign Course Modal */}
           <Modal show={showAssign} onHide={handleAssignClose}>
           
           <Modal.Header closeButton>
-            <Modal.Title>Assign </Modal.Title>
+            <Modal.Title>Assign Course </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <AssignTraineeCourse 
             trainees = {props.trainees}
             courses = {props.courses}
-            tracks = {props.tracks}
+            closeButton = {handleAssignClose}
             />
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleAssignClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleAssignClose}>
-              Assign
-            </Button>
-          </Modal.Footer>
+        </Modal>
+
+        <Modal show={showAssigned} onHide={handleAssignClose}>
+          
+          <Modal.Header closeButton>
+            <Modal.Title>Assign Track </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <AssignTraineeTrack 
+            trainees = {props.trainees}
+            tracks = {props.tracks}
+            closeButton = {handleAssignedClose}
+            />
+          </Modal.Body>
         </Modal>
       </Row>
     </div>
