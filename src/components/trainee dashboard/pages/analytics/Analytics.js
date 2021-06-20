@@ -22,43 +22,34 @@ class Analytics extends Component {
         {/* <!-- MAIN CARDS STARTS HERE --> */}
         <div className="main__anCards">
           <div className="anCard">
-            <i
-              className="fa fa-user-o fa-2x text-lightblue"
-              aria-hidden="true"
-            ></i>
+          
             <div className="anCard_inner">
               <p className="text-primary-p">Enrolled Courses</p>
-              <span className="font-bold text-title">20</span>
+              <span className="font-bold text-title">1</span>
             </div>
           </div>
 
           <div className="anCard">
-            <i className="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
+           
             <div className="anCard_inner">
               <p className="text-primary-p">Courses Available</p>
-              <span className="font-bold text-title">20</span>
+              <span className="font-bold text-title">1</span>
             </div>
           </div>
 
           <div className="anCard">
-            <i
-              className="fa fa-video-camera fa-2x text-yellow"
-              aria-hidden="true"
-            ></i>
+           
             <div className="anCard_inner">
               <p className="text-primary-p">Completed Courses</p>
-              <span className="font-bold text-title">5</span>
+              <span className="font-bold text-title">1</span>
             </div>
           </div>
 
           <div className="anCard">
-            <i
-              className="fa fa-thumbs-up fa-2x text-green"
-              aria-hidden="true"
-            ></i>
+           
             <div className="anCard_inner">
               <p className="text-primary-p">Number</p>
-              <span className="font-bold text-title">645</span>
+              <span className="font-bold text-title">1</span>
             </div>
           </div>
         </div>

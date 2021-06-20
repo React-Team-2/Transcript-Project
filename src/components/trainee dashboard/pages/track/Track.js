@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../courses/Course.css";
+import * as actionCreator from "../../../../store/actions/action";
 import axios from "axios";
 import Loader from "../../../../Loader";
 
@@ -8,32 +9,34 @@ import Loader from "../../../../Loader";
 class track extends Component {
   constructor(props){
     super(props);
-    this.fetchTracks();
+   
   }
  
 
-  async fetchTracks() {
-    const fetchedTracks = await axios.get(
-      "https://amalitech-tms.herokuapp.com/tracks?user=60ba4ef1303e0f1b04b7a26c",
-      {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
-        },
-      }
-    );
-    const trackData = fetchedTracks.data.result;
+  // async fetchTracks() {
+  //   const fetchedTracks = await axios.get(
+  //     "https://amalitech-tms.herokuapp.com/tracks?user=60ba4ef1303e0f1b04b7a26c",
+  //     {
+  //       headers: {
+  //         Authorization:
+  //           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImplZmYucG9ydHVwaHkyQGFtYWxpdGVjaC5vcmciLCJ1c2VyX2lkIjoiNjBiYTRlZjEzMDNlMGYxYjA0YjdhMjZjIiwiaWF0IjoxNjIyOTA4ODEwfQ.QBB21xZtGNRWW_1F6Vb0V47kPIRIRHgOsnktxSA_vT4",
+  //       },
+  //     }
+  //   );
+  //   const trackData = fetchedTracks.data.result;
    
         
-    trackData.map((track) => {
-      const date = new Date(track.enrollment_date);
-      track.enrollment_date = date.toLocaleDateString();
-      return {}
-    });
-    this.props.getTracks(trackData);
+  //   trackData.map((track) => {
+  //     const date = new Date(track.enrollment_date);
+  //     track.enrollment_date = date.toLocaleDateString();
+  //     return {}
+  //   });
+  //   this.props.getTracks(trackData);
+  // }
+
+  componentDidMount(){
+    this.props.fetchTraineeTrack()
   }
-
-
 
   render() {
     let trackData = this.props.tracks;
@@ -123,7 +126,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTracks: (tracks) => dispatch({ type: "UPDATE_TRACKS", payload: tracks}),
+    // getTracks: (tracks) => dispatch({ type: "UPDATE_TRACKS", payload: tracks}),
+    fetchTraineeTrack:()=>dispatch(actionCreator.fetchTraineeTrack())
   };
 };
 

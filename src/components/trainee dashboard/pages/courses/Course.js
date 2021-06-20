@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as actionCreator from "../../../../store/actions/action";
 import "../courses/Course.css";
 
 class course extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  componentDidMount(){
+    this.props.fetchTraineeCourse()
+  }
  
   render() {
     
@@ -34,19 +42,19 @@ class course extends Component {
             <tr>
               <th>#</th>
               <th>Course Title</th>
-              <th>Course Code</th>
+              <th>Course Master</th>
               <th>Date Enrolled</th>
              
             </tr>
           </thead>
           <tbody>
-            {this.props.courses.map((data) => {
+            {this.props.courses.map((course,index) => {
               return (
                 <tr>
-                  <td>{data.id}</td>
-                  <td>{data.title}</td>
-                  <td>{data.code}</td>
-                  <td>{data.date}</td>
+                  <td>{index}</td>
+                  <td>{course.course_name}</td>
+                  <td>{course.course_master}</td>
+                  <td>{course.date_created}</td>
                  
                 </tr>
               );
@@ -60,10 +68,16 @@ class course extends Component {
 }
   const mapStateToProps =state =>{
        return{
-         courses: state.allCourse
+         courses: state.allCourses.courses
          
        }
   }
 
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      fetchTraineeCourse: () => dispatch(actionCreator.fetchTraineeCourse()),
+    };
+  };
+
   
-export default connect(mapStateToProps)(course);
+export default connect(mapStateToProps,mapDispatchToProps)(course);
