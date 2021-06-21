@@ -4,9 +4,9 @@ import * as actionCreator from "../../../../store/actions/action";
 import "../courses/Course.css";
 
 class course extends Component {
-  constructor(props){
-    super(props)
-  }
+  // constructor(props){
+  //   super(props)
+  // }
 
   componentDidMount(){
     this.props.fetchTraineeCourse(localStorage.getItem('userId'));

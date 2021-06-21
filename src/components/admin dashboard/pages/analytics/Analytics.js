@@ -4,9 +4,9 @@ import {connect} from "react-redux";
 import * as actionCreator from "../../../../store/actions/action";
 
 class Analytics extends Component {
-  constructor(props){
-    super(props);
-  }
+  // constructor(props){
+  //   super(props);
+  // }
   componentDidMount(){
     this.props.fetchTrainees();
     this.props.fetchTracks();

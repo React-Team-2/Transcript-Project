@@ -17,7 +17,7 @@ const AllCourses = (props) =>{
 
   useEffect(() =>{
     props.fetchCourses();
-  }, [])
+  }, [props])
   const handleClose = () => setState({...state, show: false});
   const handleShow = (course) => setState({show: true, course: course});
 

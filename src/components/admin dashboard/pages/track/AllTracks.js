@@ -12,7 +12,7 @@ const AllTracks = (props) => {
 
   useEffect(() =>{
     props.fetchTracks();
-  }, [])
+  }, [props])
   const handleDelete = (id) => {
     console.log(id);
     props.delTrack(id);

@@ -27,7 +27,8 @@ class CourseForm extends Component {
           break;
        case "course_duration":
           this.setState({course_duration:e.target.value})
-          break;            
+          break;  
+                    
      }
    }
 
