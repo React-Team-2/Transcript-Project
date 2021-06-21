@@ -1,4 +1,7 @@
 import React from "react";
+import Auth from '../../../Auth';
+import {useHistory} from 'react-router-dom';
+
 import {
   Navbar,
   NavDropdown,
@@ -11,8 +14,11 @@ import {
 
 const NavbarCom = () => {
 
-  const handleLogout = () =>{
-
+  let history = useHistory();   
+  const handleLogout = () => {
+    Auth.logOut(()=>{
+      history.push('/login');
+    })   
   }
   return (
     <Navbar bg="light" expand="lg">
@@ -29,7 +35,7 @@ const NavbarCom = () => {
               <NavDropdown.Item disabled className="text-dark">Media & Design</NavDropdown.Item>
               
               <div className="w-full text-center mt-2">
-              <Button className="mx-auto" onClick={()=>{handleLogout()}}>sign out</Button>
+              <Button className="mx-auto" onClick={()=>{handleLogout()}}>Log out</Button>
               </div>
             </NavDropdown>
           </Nav>

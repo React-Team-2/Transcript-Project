@@ -20,7 +20,7 @@ class Analytics extends Component {
         <div className="main__container">
           {/* <!-- MAIN CARDS STARTS HERE --> */}
           <div className="main__anCards">
-            <div className="anCard">
+            <div className="green anCard1">
              
               <div className="anCard_inner">
                 <p className="text-primary-p">Total Number of Trainees</p>
@@ -28,7 +28,7 @@ class Analytics extends Component {
               </div>
             </div>
 
-            <div className="anCard">
+            <div className="anCard2">
              
               <div className="anCard_inner">
                 <p className="text-primary-p">Courses Available</p>
@@ -36,7 +36,7 @@ class Analytics extends Component {
               </div>
             </div>
 
-            <div className="anCard">
+            <div className="anCard3">
              
               <div className="anCard_inner">
                 <p className="text-primary-p">Batches</p>
@@ -44,7 +44,7 @@ class Analytics extends Component {
               </div>
             </div>
 
-            <div className="anCard">
+            <div className="anCard4">
             
               <div className="anCard_inner">
                 <p className="text-primary-p">Tracks</p>
@@ -68,22 +68,22 @@ class Analytics extends Component {
               <div className="charts__right__anCards">
                 <div className="anCard1">
                   <h1>Jan</h1>
-                  <p>20%</p>
+                  {/* <p>20%</p> */}
                 </div>
 
                 <div className="anCard2">
                   <h1>Feb</h1>
-                  <p>50%</p>
+                  {/* <p>50%</p> */}
                 </div>
 
                 <div className="anCard3">
                   <h1>Users</h1>
-                  <p>3900</p>
+                  {/* <p>3900</p> */}
                 </div>
 
                 <div className="anCard4">
                   <h1>March</h1>
-                  <p>90%</p>
+                  {/* <p>90%</p> */}
                 </div>
               </div>
             </div>

@@ -92,11 +92,6 @@ const Login = (props) => {
               >
                 Login
               </Button>
-
-              {/* <div className="text-left mt-3">
-                                <a href="#"><small className="reset">Password Reset</small></a> II
-                                <a href="#"><small className="reset ml-2">Quick Recover</small></a>
-                            </div> */}
             </Form>
           </Col>
 

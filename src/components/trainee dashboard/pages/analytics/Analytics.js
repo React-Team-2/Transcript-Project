@@ -30,14 +30,14 @@ class Analytics extends Component {
 
           {/* <!-- MAIN CARDS STARTS HERE --> */}
           <div className="main__anCards">
-            <div className="anCard">
+            <div className="anCard1">
               <div className="anCard_inner">
                 <p className="text-primary-p">Enrolled Courses</p>
                 <span className="font-bold text-title">1</span>
               </div>
             </div>
 
-            <div className="anCard">
+            <div className="anCard2">
               <div className="anCard_inner">
                 <p className="text-primary-p">Courses Available</p>
                 <span className="font-bold text-title">
@@ -46,14 +46,14 @@ class Analytics extends Component {
               </div>
             </div>
 
-            <div className="anCard">
+            {/* <div className="anCard3">
               <div className="anCard_inner">
                 <p className="text-primary-p">Completed Courses</p>
                 <span className="font-bold text-title">1</span>
               </div>
-            </div>
+            </div> */}
 
-            <div className="anCard">
+            <div className="anCard4">
               <div className="anCard_inner">
                 <p className="text-primary-p">Number</p>
                 <span className="font-bold text-title">1</span>
