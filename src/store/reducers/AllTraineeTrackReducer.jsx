@@ -5,7 +5,7 @@ const initialState={
     tracks:[],
     error:""
 }
-const TraineeTracksReducer = (state=initialState, action) => {
+const AllTraineeTracksReducer = (state=initialState, action) => {
     
 
     switch(action.type){
@@ -30,4 +30,4 @@ const TraineeTracksReducer = (state=initialState, action) => {
    
 }
 
-export default TraineeTracksReducer;
+export default AllTraineeTracksReducer;

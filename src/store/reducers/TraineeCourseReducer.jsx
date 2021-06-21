@@ -2,17 +2,11 @@ import * as actions from "../actions/action"
 
 const initialState={
     loading:false,
-    course:[],
-    currentCourse:{
-        id:"",
-        courseTitle:"",
-        courseCode:"",
-
-    }
+    courses:[],
 }
 
 
-const AllCoursesReducer = (state=initialState,action) => {
+const TraineeCourseReducer = (state=initialState,action) => {
     
      switch(action.type){
          case actions.fetchRequest:
@@ -34,8 +28,11 @@ const AllCoursesReducer = (state=initialState,action) => {
               courses:[],
               error:action.payload
                 }       
-
+        case actions.FETCH_TRAINEE_COURSE:
+            return {
+                courses: action.payload
+            }
          default: return state
      }
 }
-export default AllCoursesReducer;
+export default TraineeCourseReducer;

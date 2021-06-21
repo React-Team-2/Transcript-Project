@@ -3,9 +3,9 @@ import React from "react";
 const Developer = (props) => {
   return (
     <div className="developer">
-      <div className="overlay">
+      {/* <div className="overlay">
         Media and Design Track, in charge of About Page
-       </div>
+       </div> */}
       <div className="devImg">
          <img src={props.src} alt={props.alt} />
       </div>

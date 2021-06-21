@@ -9,21 +9,15 @@ class course extends Component {
   }
 
   componentDidMount(){
-    this.props.fetchTraineeCourse()
+    this.props.fetchTraineeCourse(localStorage.getItem('userId'));
   }
  
   render() {
     
     return (
       <div class="container p-5">
-        <div class="row">
-          <div class="col-10">
-            Track:<span class="ms-3">track_name</span>
-          </div>
-         
-        </div>
         <div class="row mt-3">
-          <div class="col-10">
+          {/* <div class="col-10">
             <div className="d-flex">
             <label for="sort">Sort</label>
             <select id="sort" class="form-select w-auto ms-3" aria-label="Default select example">
@@ -31,7 +25,7 @@ class course extends Component {
               <option>DESC</option>
             </select>
             </div>
-          </div>
+          </div> */}
           <div class="col">
             <button class="btn btn-success">Print</button>
           </div>
@@ -50,11 +44,11 @@ class course extends Component {
           <tbody>
             {this.props.courses.map((course,index) => {
               return (
-                <tr>
-                  <td>{index}</td>
+                <tr key={index}>
+                  <td>{index + 1}</td>
                   <td>{course.course_name}</td>
                   <td>{course.course_master}</td>
-                  <td>{course.date_created}</td>
+                  <td>{course.enrollment_date}</td>
                  
                 </tr>
               );
@@ -68,14 +62,13 @@ class course extends Component {
 }
   const mapStateToProps =state =>{
        return{
-         courses: state.allCourses.courses
-         
+         courses: state.traineeCourses.courses
        }
   }
 
   const mapDispatchToProps = (dispatch) => {
     return {
-      fetchTraineeCourse: () => dispatch(actionCreator.fetchTraineeCourse()),
+      fetchTraineeCourse: (traineeId) => dispatch(actionCreator.fetchTraineeCourse(traineeId)),
     };
   };
 

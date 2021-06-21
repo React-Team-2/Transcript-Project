@@ -35,12 +35,12 @@ class track extends Component {
   // }
 
   componentDidMount(){
-    this.props.fetchTraineeTrack()
+    this.props.fetchTraineeTrack(localStorage.getItem("userId"));
   }
 
   render() {
     let trackData = this.props.tracks;
-    let fetched = this.props.loading;
+    let fetched = this.props.tracks.length > 0 ? true: false;
     
     // Date Created
 
@@ -51,7 +51,7 @@ class track extends Component {
         {trackData.map((track, index) => {
           return (
             <tr key={index}>
-              <td>{index}</td>
+              <td>{index + 1}</td>
               <td>{track.track_name}</td>
               <td>{track.track_master}</td>
               <td>{track.enrollment_date}</td>
@@ -78,13 +78,13 @@ class track extends Component {
 
     return (
       <div class="container p-5">
-        <div class="row">
+        {/* <div class="row">
           <div class="col-10">
             Track:<span class="ms-3">track_name</span>
           </div>
-        </div>
+        </div> */}
         <div class="row mt-3">
-          <div class="col-10">
+          {/* <div class="col-10">
             <div className="d-flex">
               <label for="sort">Sort</label>
               <select
@@ -96,7 +96,7 @@ class track extends Component {
                 <option>DESC</option>
               </select>
             </div>
-          </div>
+          </div> */}
         </div>
         <hr />
         <table className="table table-striped table-hover">
@@ -120,14 +120,14 @@ class track extends Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.allTraineeTracks.fetched,
-    tracks: state.allTraineeTracks.tracks,
+    tracks: state.traineeTracks.tracks,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     // getTracks: (tracks) => dispatch({ type: "UPDATE_TRACKS", payload: tracks}),
-    fetchTraineeTrack:()=>dispatch(actionCreator.fetchTraineeTrack())
+    fetchTraineeTrack:(traineeId)=>dispatch(actionCreator.fetchTraineeTrack(traineeId))
   };
 };
 

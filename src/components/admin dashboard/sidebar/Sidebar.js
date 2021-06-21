@@ -30,7 +30,7 @@ let history = useHistory();
 
       <div className="sidebar__menu">
         <div className="sidebar_avatar2">
-           <img src="/assets/images/fel.jpg" alt=""/>
+           <img src="/assets/myAvatar.svg" alt=""/>
            <h5>Admin</h5>
         </div>
          

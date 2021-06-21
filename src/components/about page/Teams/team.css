@@ -1,6 +1,6 @@
 .team {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr ;
     /* background-color: #ececec; */
     margin: 20px;
     position: relative;

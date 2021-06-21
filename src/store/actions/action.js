@@ -134,10 +134,10 @@ export const fetchTrainees = () => {
 
 
 
-export const fetchTraineeCourse = () => {
+export const fetchTraineeCourse = (traineeId) => {
     return (dispatch) => {
         dispatch(fetchRequest)
-        const baseUrl = "https://amalitech-tms.herokuapp.com/courses"
+        const baseUrl = `https://amalitech-tms.herokuapp.com/courses/?user=${traineeId}`
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           
@@ -145,6 +145,7 @@ export const fetchTraineeCourse = () => {
         }
         axios.get(baseUrl, config).then(res => {
             const courses = res.data.result
+            console.log(courses);
             dispatch(fetchTraineeCourseSuccess(courses))
         }).catch(error => {
             const errMsg = error.message
@@ -154,10 +155,10 @@ export const fetchTraineeCourse = () => {
 }
 
 
-export const fetchTraineeTrack = () => {
+export const fetchTraineeTrack = (traineeId) => {
     return (dispatch) => {
         dispatch(fetchRequest)
-        const baseUrl = "https://amalitech-tms.herokuapp.com/tracks"
+        const baseUrl = `https://amalitech-tms.herokuapp.com/tracks?user=${traineeId}`
         const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`           
@@ -421,5 +422,6 @@ export const getUserDetails = (user) => {
         })
     }
 }
+
 
 
