@@ -36,13 +36,13 @@ class Analytics extends Component {
               </div>
             </div>
 
-            <div className="anCard3">
+            {/* <div className="anCard3">
              
               <div className="anCard_inner">
                 <p className="text-primary-p">Batches</p>
                 <span className="font-bold text-title">{3}</span>
               </div>
-            </div>
+            </div> */}
 
             <div className="anCard4">
             
