@@ -85,7 +85,7 @@ class CourseForm extends Component {
             </Col>
             <Col>
               <div className="col">
-                <label className="form-label">Code Master</label>
+                <label className="form-label">Course Master</label>
                 <input
                 name="course_master"
                   defaultValue={this.props.courseCode}

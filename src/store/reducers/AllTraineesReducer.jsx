@@ -1,21 +1,11 @@
 import * as actions from "../actions/action"
 const initialState={
     loading:false,
-    trainees:[
-        
-    ],
-    // currentTrainee:{
-    //     id:"",
-    //     firstname:"",
-    //     lastname:"",
-    //     currentTrack:"",
-    //     date:""
-
-    // }
+    trainees:[]
 }
 
 const AllTraineesReducer = (state=initialState,action) => {
-    console.log(action.type)
+
     switch(action.type){
         case actions.FETCH_REQUEST:
             return{

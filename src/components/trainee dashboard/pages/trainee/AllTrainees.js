@@ -34,7 +34,7 @@ class AllTrainees extends Component {
                 </tr>
               </thead>
               <tbody>
-              {this.trainees.map((trainee) => {
+              {this.trainees.map((trainee, index) => {
               return (
                 <tr>
                   <td>{trainee.id}</td>

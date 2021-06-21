@@ -64,7 +64,7 @@ const AllTracks = (props) => {
           {trackData.map((track, index) => {
             return (
               <tr key={index}>
-                <td> {index} </td> <td> {track.track_name} </td>
+                <td> {index + 1} </td> <td> {track.track_name} </td>
                 <td> {track.track_master} </td> <td> {track.date_created} </td>
                 <td>
                   <button

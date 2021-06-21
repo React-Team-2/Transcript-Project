@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseForm";
 import {Button, Modal} from "react-bootstrap";
 import * as actionCreator from "../../../../store/actions/action";
-import axios from "axios";
+// import axios from "axios";
 import { connect } from "react-redux";
 
 
@@ -29,7 +29,7 @@ const AllCourses = (props) =>{
 
   const [showConfirmModal ,setShowConfirmModal]=useState(false);
   const handleConfirmClose = () => setShowConfirmModal(false);
-  const handleConfirmShow=()=>setShowConfirmModal(true)
+  // const handleConfirmShow=()=>setShowConfirmModal(true)
 
     return (
       <div className="mt-3">
@@ -54,7 +54,7 @@ const AllCourses = (props) =>{
             {props.courses.map((course, index) => {
               return (
                 <tr key={course._id}>
-                  <td>{index}</td>
+                  <td>{index + 1}</td>
                   <td>{course.course_name}</td>
                   <td>{course.course_master}</td>
                   <td>{course.date_created}</td>

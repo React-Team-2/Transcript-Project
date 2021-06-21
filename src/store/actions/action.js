@@ -239,7 +239,7 @@ export const updateTrainee = (trainee) => {
             email: trainee.email,
             batch_name: trainee.batch_name,
             password: trainee.password,
-            role: "user"
+            role: trainee.role
         }
         axios.put(url, newTrainee, config).then(res => {
             console.log(res)

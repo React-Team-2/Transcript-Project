@@ -36,7 +36,7 @@ const AllTrainees = (props) => {
     <tbody>
       {trainees.map((trainee) => {
         return (
-          <tr key={trainee.id}>
+          <tr key={trainee._id}>
             <td>{trainee.id}</td>
             <td>{trainee.firstname}</td>
             <td>{trainee.lastname}</td>
@@ -95,7 +95,7 @@ const AllTrainees = (props) => {
             firstname={state.trainee.firstname}
             lastname={state.trainee.lastname}
             email={state.trainee.email}
-            batch={state.trainee.batch ? state.trainee.batch : ""}
+            batch={state.trainee.batch ? state.trainee.batch.batch_name : ""}
           />
         </Modal.Body>
       </Modal>

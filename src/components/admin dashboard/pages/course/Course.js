@@ -28,10 +28,10 @@ const Course = (props) => {
       }
     );
     const courseData = fetchedTracks.data.result;
-    courseData.map((course) => {
+    
+    courseData.forEach((course) => {
       const date = new Date(course.date_created);
       course.date_created = date.toLocaleDateString();
-     
     });
     dispatch({ type: "UPDATE_COURSES", payload: courseData})
   }

@@ -1,18 +1,16 @@
 import React, { Component } from "react";
-import Chart from "../../charts/Chart";
 import "./Analytics.css";
 import {connect} from "react-redux";
 import * as actionCreator from "../../../../store/actions/action";
-// import Chart from "../../charts/Chart";
 
 class Analytics extends Component {
   constructor(props){
     super(props);
   }
   componentDidMount(){
-    this.props.fetchTrainees()
-    this.props.fetchTracks()
-    this.props.fetchCourses()
+    this.props.fetchTrainees();
+    this.props.fetchTracks();
+    this.props.fetchCourses();
   }
   render() {
     return (
@@ -35,15 +33,6 @@ class Analytics extends Component {
                 <span className="font-bold text-title">{this.props.courses.length}</span>
               </div>
             </div>
-
-            {/* <div className="anCard3">
-             
-              <div className="anCard_inner">
-                <p className="text-primary-p">Batches</p>
-                <span className="font-bold text-title">{3}</span>
-              </div>
-            </div> */}
-
             <div className="anCard4">
             
               <div className="anCard_inner">
@@ -121,5 +110,3 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Analytics);
-
-

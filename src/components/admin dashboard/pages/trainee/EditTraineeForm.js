@@ -13,7 +13,7 @@ class AddTrainee extends Component {
         email: this.props.email,
         batch_name: this.props.batch,
         password: this.props.password,
-        role_title: this.props.role_title,
+        role: "user",
         trainees:[],
       }
     

@@ -12,7 +12,7 @@ class AddTrainee extends Component {
         email: " ",
         batch_name: " ",
         password: " ",
-        role_title: " ",
+        role: " ",
         trainees:[],
       }
     
@@ -64,6 +64,7 @@ class AddTrainee extends Component {
           email: " ",
           batch_name: " ",
           password: " ",
+          role: " "
 
         })
       })

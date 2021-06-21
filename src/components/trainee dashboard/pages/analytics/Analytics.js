@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Chart from "../../charts/Chart";
+// import Chart from "../../charts/Chart";
 import "./Analytics.css";
 import { connect } from "react-redux";
 import * as actionCreator from "../../../../store/actions/action";
